@@ -31,15 +31,29 @@ Re-assess after making changes. Compare against your prior assessment to see wha
 
 ## Installation
 
-1. Copy the `.github/agents/` and `.github/skills/` directories into your repository
-2. Copy `plugin.json` to your repo root
-3. Invoke the agent through GitHub Copilot
+### GitHub Copilot Plugin
+```bash
+copilot plugin marketplace add suuus/isee-advisor
+copilot plugin install isee-advisor@isee-advisor
+```
+
+### Copy
 
 ```bash
+# Clone this repo
+git clone https://github.com/suuus/isee-advisor.git
+
 # Quick setup
 cp -r path/to/isee-advisor/.github/agents/ .github/agents/
 cp -r path/to/isee-advisor/.github/skills/isee-* .github/skills/
 cp path/to/isee-advisor/plugin.json .
+```
+### Use as a git sub module
+
+```bash
+cd your-repo
+git submodule add https://github.com/suuus/ape-context.git .ape-context
+# Then symlink or copy what you need into .github/
 ```
 
 ## How It Works
