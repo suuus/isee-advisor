@@ -32,6 +32,23 @@ Read these files (if they exist):
 - Service/module boundaries visible in repo structure
 - ADRs (Architecture Decision Records) that distribute decision context
 
+### Upstream context connections (Execution)
+
+Scan for references that link execution patterns to external coordination:
+
+**Direct connections** (discoverable in-repo):
+- Work item references in commit messages (scan git log for `AB#\d+`, `JIRA-\d+`, `#\d+`, `fixes`, `closes`, `resolves`)
+- PR template fields that require work item links or upstream references
+- Cross-repo ownership references in CODEOWNERS comments
+- Agent definitions distributed via packaging systems — remote agent packaging is a form of distributed execution context. Look for package manifests or installed modules containing agent primitives from external sources.
+- GitHub Projects or milestones referenced in issue templates
+
+**Indirect connections** (referenced but external):
+- Team names or external stakeholders mentioned in docs
+- References to cross-team dependencies ("coordinated with platform team")
+- External workflow tools mentioned (Jira boards, ADO sprints, Linear)
+- Meeting or ritual references that suggest external coordination patterns
+
 ### Execution gaps (ABSENT)
 - No CODEOWNERS or overly broad ownership
 - PR template with only a checklist (no context fields)
@@ -40,6 +57,8 @@ Read these files (if they exist):
 - No documented workflows or cross-tool chains
 - Monolithic structure with no clear boundaries
 - Decisions trapped in meeting notes or Slack (not in repo artifacts)
+- No work item traceability — commits and PRs disconnected from upstream work tracking
+- No cross-team context — execution appears isolated from organizational coordination
 
 ### Execution questions (UNKNOWN)
 When repo signals are weak:
@@ -79,9 +98,9 @@ Apply the rubric. For each signal:
 - Signal, State, Confidence, Citation, Impact, Recommendation
 
 ### Profile-adjusted expectations
-- **Lightweight**: Small teams don't need CODEOWNERS. PR descriptions carrying context is the key signal. Agent usage is a bonus.
-- **Standard**: CODEOWNERS, context-rich PRs, documented workflows, some agent integration. Coordination through artifacts more than meetings.
-- **Regulated**: Formal ownership model, decision audit trail (ADRs), policy-compliant workflows, agent boundaries documented.
+- **Lightweight**: Small teams don't need CODEOWNERS. PR descriptions carrying context is the key signal. Agent usage is a bonus. Work item refs optional.
+- **Standard**: CODEOWNERS, context-rich PRs, documented workflows, some agent integration. Coordination through artifacts more than meetings. Work item traceability in commits/PRs expected.
+- **Regulated**: Formal ownership model, decision audit trail (ADRs), policy-compliant workflows, agent boundaries documented. Full work item traceability and cross-team coordination evidence required.
 
 ## Output
 
@@ -90,6 +109,11 @@ Apply the rubric. For each signal:
 
 ### Findings
 [List each finding with rubric format]
+
+### Upstream Context Connections (Execution)
+- **Direct**: [work item refs in commits/PRs, cross-repo ownership — with citations]
+- **Indirect**: [team/stakeholder references, external workflow tools — with citations]
+- **Work item traceability**: [Connected / Partial / None — can execution be traced to upstream work items?]
 
 ### Summary
 - Signals found: X present, Y absent, Z unknown

@@ -35,6 +35,31 @@ Read these files (if they exist):
 - Error tracking integrated (errors flow upstream automatically)
 - Agent instructions that include "verify after action" patterns
 
+### Upstream context connections (Evidence)
+
+Scan for references that link evidence to upstream decision-making:
+
+**Direct connections** (discoverable in-repo):
+- CI/CD reporting that flows to external systems (Slack notifications, dashboard URLs in config)
+- Post-incident review templates or references to retro processes
+- Backlog item patterns: evidence of metric/incident → work item flow (e.g., issue templates with "root cause" or "triggered by" fields)
+- Agent-produced artifacts that persist and inform decisions (saved reports, generated docs)
+- MCP servers connecting to monitoring/observability tools (agents can query production evidence)
+- Coverage/test trend tracking (not just current run — historical evidence)
+
+**Indirect connections** (referenced but external):
+- References to dashboards, SLA reports, or KPI tracking
+- Mentions of retro/post-mortem processes in docs
+- References to incident management systems (PagerDuty, OpsGenie, Statuspage)
+- Feedback loop descriptions ("we review metrics monthly", "post-mortems feed the backlog")
+
+**Evidence upstream flow — the critical question:**
+Does evidence actually flow back to decisions? Look for:
+1. **Incident → Backlog**: Do post-incidents create issues/work items? (Check issue templates for incident-linked patterns)
+2. **Metrics → Priorities**: Are there references to data-driven priority changes?
+3. **Agent output → Team decisions**: Do agent-produced reports get referenced in subsequent changes?
+4. **Production → Configuration**: Do monitoring signals lead to infrastructure/config updates?
+
 ### Evidence gaps (ABSENT)
 - CI runs tests but doesn't report results or coverage
 - No monitoring references anywhere in the repo
@@ -44,6 +69,9 @@ Read these files (if they exist):
 - No status badges or health indicators
 - Agents with no "check your work" guidance
 - Feedback that stays in dashboards but doesn't flow to decisions
+- No evidence of feedback loops — evidence is produced but never visibly consumed upstream
+- No incident → backlog traceability
+- Agent output stays in conversation — never persisted or surfaced to decision-makers
 
 ### Evidence questions (UNKNOWN)
 Much of evidence lives outside the repo:
@@ -91,9 +119,9 @@ Apply the rubric. For each signal:
 - Signal, State, Confidence, Citation, Impact, Recommendation
 
 ### Profile-adjusted expectations
-- **Lightweight**: CI reporting tests pass/fail + basic error tracking is sufficient. Feedback loop can be informal.
-- **Standard**: Coverage thresholds, monitoring, alerting, deployment verification, changelog. Feedback flows to backlog.
-- **Regulated**: Audit-grade evidence trails, mandatory post-incident reviews, compliance reporting, SLA monitoring, change evidence.
+- **Lightweight**: CI reporting tests pass/fail + basic error tracking is sufficient. Feedback loop can be informal. Upstream flow via conversation is acceptable.
+- **Standard**: Coverage thresholds, monitoring, alerting, deployment verification, changelog. Feedback flows to backlog. Evidence from agents persists (saved reports). Some upstream traceability.
+- **Regulated**: Audit-grade evidence trails, mandatory post-incident reviews, compliance reporting, SLA monitoring, change evidence. Full feedback loop traceability. Agent evidence must be auditable and demonstrably inform decisions.
 
 ## Output
 
@@ -102,6 +130,16 @@ Apply the rubric. For each signal:
 
 ### Findings
 [List each finding with rubric format]
+
+### Upstream Context Connections (Evidence)
+- **Direct**: [CI reporting flows, agent artifacts, MCP monitoring — with citations]
+- **Indirect**: [dashboard refs, retro process mentions, incident system refs — with citations]
+- **Feedback loop traceability**: [Closed loop / Partial loop / Open loop — does evidence flow back to decisions?]
+
+### Evidence Upstream Flow
+- Evidence **produced**: [list sources — CI, monitoring, agents, changelogs]
+- Evidence **consumed upstream**: [what evidence visibly informs decisions?]
+- Evidence **closing the loop**: [incidents → backlog? metrics → priorities? agent findings → config changes?]
 
 ### Summary
 - Signals found: X present, Y absent, Z unknown

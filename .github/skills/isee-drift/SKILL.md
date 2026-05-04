@@ -46,17 +46,19 @@ Track with SQL:
 
 ```sql
 INSERT INTO todos (id, title, description, status) VALUES
-  ('drift-intent',    'Drift: Intent layer',    'Re-scan intent signals', 'pending'),
-  ('drift-structure', 'Drift: Structure layer',  'Re-scan structure signals', 'pending'),
-  ('drift-execution', 'Drift: Execution layer',  'Re-scan execution signals', 'pending'),
-  ('drift-evidence',  'Drift: Evidence layer',   'Re-scan evidence signals', 'pending'),
-  ('drift-report',    'Drift: Generate report',  'Compare and report', 'pending');
+  ('drift-intent',    'Drift: Intent layer',    'Re-scan intent signals including intent levels and upstream context', 'pending'),
+  ('drift-structure', 'Drift: Structure layer',  'Re-scan structure signals including upstream structural inheritance', 'pending'),
+  ('drift-execution', 'Drift: Execution layer',  'Re-scan execution signals including work item traceability', 'pending'),
+  ('drift-evidence',  'Drift: Evidence layer',   'Re-scan evidence signals including feedback loop traceability', 'pending'),
+  ('drift-agents',    'Drift: Agents (optional)','Re-scan agent ISEE signals if agent definitions detected', 'pending'),
+  ('drift-report',    'Drift: Generate report',  'Compare and report including intent levels, context chain, agent changes', 'pending');
 
 INSERT INTO todo_deps (todo_id, depends_on) VALUES
   ('drift-structure', 'drift-intent'),
   ('drift-execution', 'drift-structure'),
   ('drift-evidence',  'drift-execution'),
-  ('drift-report',    'drift-evidence');
+  ('drift-agents',    'drift-evidence'),
+  ('drift-report',    'drift-agents');
 ```
 
 ### 3. Compare against prior assessment
@@ -71,6 +73,25 @@ For each finding in the prior report, determine:
 | 🆕 **New signal** | Not in prior report (new file, new config, new pattern) |
 | ➖ **Removed** | Prior signal source deleted (file removed, config deleted) |
 | 🔄 **Unchanged gap** | Was Absent, still Absent |
+
+### Additional drift dimensions for new signals
+
+**Intent levels drift:**
+- Did new intent levels appear? (e.g., architecture intent added)
+- Did breadth/depth/coherence change?
+- Were upstream context connections added or lost?
+
+**Context chain drift:**
+- Did traceability improve or degrade?
+- Were new upstream connections established?
+- Did any direct connections become indirect (or vice versa)?
+
+**Agent ISEE drift** (if agents present in both assessments):
+- Did per-agent ISEE scores change?
+- Were new agents added or existing ones removed?
+- Did evidence upstream flow improve?
+- Did system-level coordination patterns change?
+- Were agent packages from distribution systems added or updated?
 
 ### 4. Score changes
 

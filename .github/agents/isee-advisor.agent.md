@@ -36,17 +36,19 @@ When the user selects **assess**, execute these phases in order. Track progress 
 
 ```sql
 INSERT INTO todos (id, title, description, status) VALUES
-  ('assess-intent',    'Phase 1: Assess Intent layer',     'Scan for explicit intent statements, outcome definitions, decision criteria', 'pending'),
-  ('assess-structure', 'Phase 2: Assess Structure layer',  'Check for codified constraints, guardrails, tool scoping, trade-offs', 'pending'),
-  ('assess-execution', 'Phase 3: Assess Execution layer',  'Evaluate team topology signals, context distribution, coordination patterns', 'pending'),
-  ('assess-evidence',  'Phase 4: Assess Evidence layer',   'Check for feedback loops, monitoring, CI checks, reporting patterns', 'pending'),
-  ('assess-report',    'Phase 5: Generate ISEE report',    'Compile findings into scored maturity report with recommendations', 'pending');
+  ('assess-intent',    'Phase 1: Assess Intent layer',     'Scan for explicit intent statements, outcome definitions, decision criteria, intent levels, upstream context', 'pending'),
+  ('assess-structure', 'Phase 2: Assess Structure layer',  'Check for codified constraints, guardrails, tool scoping, trade-offs, upstream structural inheritance', 'pending'),
+  ('assess-execution', 'Phase 3: Assess Execution layer',  'Evaluate team topology signals, context distribution, coordination patterns, work item traceability', 'pending'),
+  ('assess-evidence',  'Phase 4: Assess Evidence layer',   'Check for feedback loops, monitoring, CI checks, reporting patterns, evidence upstream flow', 'pending'),
+  ('assess-agents',    'Phase 5: Assess Agents (optional)','Evaluate agents and agentic systems through the ISEE lens — only if agent definitions detected', 'pending'),
+  ('assess-report',    'Phase 6: Generate ISEE report',    'Compile findings into scored maturity report with intent levels, context chain, agent assessment, recommendations', 'pending');
 
 INSERT INTO todo_deps (todo_id, depends_on) VALUES
   ('assess-structure', 'assess-intent'),
   ('assess-execution', 'assess-structure'),
   ('assess-evidence',  'assess-execution'),
-  ('assess-report',    'assess-evidence');
+  ('assess-agents',    'assess-evidence'),
+  ('assess-report',    'assess-agents');
 ```
 
 **Phase execution pattern:**
@@ -69,7 +71,12 @@ Invoke skill: **isee-assess-execution**
 ### Phase 4: Assess Evidence
 Invoke skill: **isee-assess-evidence**
 
-### Phase 5: Generate Report
+### Phase 5: Assess Agents (optional)
+Invoke skill: **isee-assess-agents**
+
+Check for agent definitions (`.github/agents/*.agent.md`, `.github/skills/*/SKILL.md`). If none found, mark as `[SKIPPED]` with note "No agent definitions detected" and proceed to report.
+
+### Phase 6: Generate Report
 Invoke skill: **isee-assess-report**
 
 ---

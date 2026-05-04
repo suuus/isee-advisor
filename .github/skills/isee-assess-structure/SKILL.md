@@ -34,6 +34,25 @@ Read these files (if they exist):
 - Strict compiler/linter settings (treating warnings as errors)
 - Agent guardrails in copilot-instructions.md ("do not merge", "do not deploy")
 
+### Upstream context connections (Structure)
+
+Scan for references that link this repo's structure to external constraints:
+
+**Direct connections** (discoverable in-repo):
+- Shared CI templates referenced from external repos (e.g., `uses: org/.github/workflows/shared.yml`)
+- Org-level rulesets inherited (GitHub org settings, references in docs)
+- Shared linting/formatting configs extended from packages (`extends: @org/eslint-config`)
+- Infrastructure modules sourced from shared repos (Terraform modules, Bicep registries)
+- Agent context distributed via packaging/distribution systems — these count as **remote distribution** of structure/guardrails. Look for package manifests, policy files, or installed module directories that indicate constraints are centrally managed.
+
+**Indirect connections** (referenced but external):
+- References to compliance policies ("per SOC2 requirements", "as defined in security policy")
+- Platform team constraints mentioned but not codified locally
+- External approval workflows (ServiceNow, change management systems)
+- Shared infrastructure constraints referenced in docs
+
+Note: Structure that comes from a remote distribution system (agent packaging/registry) should be flagged as a **positive signal** — it means guardrails are centrally managed and consistently applied.
+
 ### Structure gaps (ABSENT)
 - `.mcp.json` with all servers at `"tools": ["*"]` (no scoping)
 - No CI checks or only trivial checks (build-only, no quality gates)
@@ -43,6 +62,7 @@ Read these files (if they exist):
 - No linting or formatting enforcement
 - Copilot instructions with no constraint section
 - No dependency management policy
+- No connection to upstream structural constraints — structure appears entirely local with no organizational inheritance
 
 ### Structure questions (UNKNOWN)
 When signals are ambiguous or external:
@@ -76,9 +96,9 @@ Apply the rubric. For each signal:
 - Signal, State, Confidence, Citation, Impact, Recommendation
 
 ### Profile-adjusted expectations
-- **Lightweight**: Basic CI checks + linting is sufficient. Informal constraints documented somewhere.
-- **Standard**: CI with quality gates, branch protection, tool scoping, security scanning, documented constraints.
-- **Regulated**: Policy-as-code, mandatory approval gates, audit-grade security scanning, cost controls, compliance-linked constraints.
+- **Lightweight**: Basic CI checks + linting is sufficient. Informal constraints documented somewhere. Upstream connections optional.
+- **Standard**: CI with quality gates, branch protection, tool scoping, security scanning, documented constraints. Some upstream structural inheritance expected (shared CI, org policies).
+- **Regulated**: Policy-as-code, mandatory approval gates, audit-grade security scanning, cost controls, compliance-linked constraints. Traceable connection to organizational/compliance constraints required.
 
 ## Output
 
@@ -87,6 +107,11 @@ Apply the rubric. For each signal:
 
 ### Findings
 [List each finding with rubric format]
+
+### Upstream Context Connections (Structure)
+- **Direct**: [shared CI templates, inherited configs, agent packages — with citations]
+- **Indirect**: [compliance policy references, platform constraints — with citations]
+- **Structural inheritance**: [Does structure come from upstream? Centrally managed or local-only?]
 
 ### Summary
 - Signals found: X present, Y absent, Z unknown
