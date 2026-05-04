@@ -65,7 +65,7 @@ Note: Structure that comes from a remote distribution system (agent packaging/re
 - No connection to upstream structural constraints — structure appears entirely local with no organizational inheritance
 
 ### Structure questions (UNKNOWN)
-When signals are ambiguous or external:
+When signals are ambiguous or external. **If the repo references external constraints (compliance policies, org rulesets, etc.), attempt to follow those references using available tools. If unreachable, record that as a finding — don't ask the user to go retrieve the content.**
 
 ```
 Use ask_user:

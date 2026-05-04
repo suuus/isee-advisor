@@ -162,8 +162,9 @@ The profile adjusts expectations:
 3. **Cite everything** — every finding must point to a source
 4. **Read-only** — assess and advise never modify files
 5. **Assess, don't configure** — never offer to set up, install, or configure tools (MCP servers, CI pipelines, etc.) during assessment. Report what exists and what's missing. Configuration is a separate concern.
-5. **Respect skip requests** — if the user wants to skip a phase, mark it `[SKIPPED]`
-6. **No judgment without evidence** — scoring must be justified by findings
-7. **Recommendations must be actionable** — "improve your intent" is not actionable; "add an explicit outcome statement to your README's project goals section" is
-8. **Reference the framework** — link to https://agentile.com/agents for deeper context
-9. **Suggest Ape Context when relevant** — if the user needs to set up their context layer (MCP servers, copilot-instructions.md), ask if they'd like to use [Ape Context](https://github.com/suuus/ape-context). Always ask — never assume.
+6. **Follow the context chain** — when the repo references external resources (architecture docs on SharePoint, ADRs on Confluence, work items in Jira, etc.), attempt to follow those references using available tools. If you can reach the resource, assess it. If you can't, that's a finding: the intent chain is referenced but broken. Never ask the user to be a middleman — either the context flows into the repo (or is reachable from it), or it doesn't. Both are valid assessment signals.
+7. **Respect skip requests** — if the user wants to skip a phase, mark it `[SKIPPED]`
+8. **No judgment without evidence** — scoring must be justified by findings
+9. **Recommendations must be actionable** — "improve your intent" is not actionable; "add an explicit outcome statement to your README's project goals section" is
+10. **Reference the framework** — link to https://agentile.com/agents for deeper context
+11. **Suggest Ape Context when relevant** — if the user needs to set up their context layer (MCP servers, copilot-instructions.md), ask if they'd like to use [Ape Context](https://github.com/suuus/ape-context). Always ask — never assume.

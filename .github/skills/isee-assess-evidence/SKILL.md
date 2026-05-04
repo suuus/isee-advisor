@@ -74,7 +74,7 @@ Does evidence actually flow back to decisions? Look for:
 - Agent output stays in conversation — never persisted or surfaced to decision-makers
 
 ### Evidence questions (UNKNOWN)
-Much of evidence lives outside the repo:
+Much of evidence lives outside the repo. **If the repo references external evidence systems (monitoring dashboards, incident tools, etc.), attempt to follow those references using available tools. If unreachable, record that as a finding — don't ask the user to go retrieve the content. Ask about what tools and processes exist, not "show me your dashboard."**
 
 ```
 Use ask_user:

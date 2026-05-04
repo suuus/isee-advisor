@@ -55,17 +55,20 @@ Score intent levels on three dimensions:
 
 Scan for references that link this repo's intent to external context:
 
-**Direct connections** (discoverable in-repo or via available tools):
+**Direct connections** (discoverable in-repo or reachable via available tools):
 - GitHub Issues/Projects linked in docs or config
 - Cross-repo references (`see also: org/other-repo`, `inherits from:`)
 - `.github/isee/context.md` or similar dedicated upstream context doc
 - Work item references in PR/issue templates (`fixes #`, `AB#`, Jira key patterns)
 
-**Indirect connections** (referenced but requires following a link or asking):
-- URLs to external docs (Confluence, Notion, wiki)
-- References to organizational policies ("per security policy X", "as required by compliance team")
+**Indirect connections** (referenced in the repo — attempt to follow):
+- URLs to external docs (Confluence, Notion, wiki) — try to reach them. If reachable, assess their content. If not, that's a finding.
+- References to organizational policies ("per security policy X") — can the policy be found?
 - Mentions of team names, stakeholders, or external owners
 - Tool names suggesting external intent sources (Jira, ADO, ServiceNow, Aha!)
+
+**Broken connections** (referenced but unreachable):
+When the repo says "our architecture docs are on X" but the link is dead, the resource is inaccessible, or no URL is provided — this is a key finding. The intent chain is *claimed* but not *flowing*. Record as: *"Upstream intent referenced but not reachable — context chain broken at [citation]."*
 
 When upstream connections are found, note them. When absent, recommend:
 - A `.github/isee/context.md` documenting where upstream intent lives
@@ -83,7 +86,7 @@ When upstream connections are found, note them. When absent, recommend:
 - No upstream context connections — intent appears to exist in isolation
 
 ### Intent questions (UNKNOWN)
-When signals are weak, ask the user:
+When signals are weak, ask the user. **If the repo references external resources, attempt to follow them using available tools. If unreachable, record that as a finding (intent chain referenced but broken) — don't ask the user to go retrieve the content.**
 
 ```
 Use ask_user:

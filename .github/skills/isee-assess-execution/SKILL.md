@@ -61,7 +61,7 @@ Scan for references that link execution patterns to external coordination:
 - No cross-team context — execution appears isolated from organizational coordination
 
 ### Execution questions (UNKNOWN)
-When repo signals are weak:
+When repo signals are weak. **If the repo references external coordination (work item boards, team docs, etc.), attempt to follow those references using available tools. If unreachable, record that as a finding — don't ask the user to go retrieve the content.**
 
 ```
 Use ask_user:
