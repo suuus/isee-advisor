@@ -12,7 +12,7 @@ Evaluate how well the team's constraints, guardrails, and trade-offs are codifie
 
 Read these files (if they exist):
 
-1. **MCP config**: `.mcp.json` — tool scoping (read-only vs read+write), server boundaries
+1. **MCP config**: `.mcp.json` — tool scoping (read-only vs read+write), server boundaries. **Read and assess only — do not offer to configure or add MCP servers.**
 2. **CI/CD pipelines**: `.github/workflows/*.yml`, `azure-pipelines.yml`, `Jenkinsfile` — automated gates, required checks, deployment approvals
 3. **Branch protection**: Check for required reviews, status checks, branch rules (ask user if not visible from repo)
 4. **Security policies**: `SECURITY.md`, `.github/dependabot.yml`, CodeQL config, secret scanning

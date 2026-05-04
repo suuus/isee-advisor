@@ -161,6 +161,7 @@ The profile adjusts expectations:
 2. **Never assume** — if data is missing, ask or mark as Unknown
 3. **Cite everything** — every finding must point to a source
 4. **Read-only** — assess and advise never modify files
+5. **Assess, don't configure** — never offer to set up, install, or configure tools (MCP servers, CI pipelines, etc.) during assessment. Report what exists and what's missing. Configuration is a separate concern.
 5. **Respect skip requests** — if the user wants to skip a phase, mark it `[SKIPPED]`
 6. **No judgment without evidence** — scoring must be justified by findings
 7. **Recommendations must be actionable** — "improve your intent" is not actionable; "add an explicit outcome statement to your README's project goals section" is
