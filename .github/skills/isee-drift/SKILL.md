@@ -1,186 +1,38 @@
 ---
 name: isee-drift
-description: Re-assess a repo and compare against a prior ISEE assessment to detect improvements, regressions, and new signals.
-user-invocable: true
+description: |
+  Re-assess a repo and compare against a prior ISEE report to detect improvements, regressions, and new signals. Read-only scan.
+
+  USE FOR: detect drift, compare assessments, track improvements, regressions, periodic review.
+
+  DO NOT USE FOR: initial assessments, modifying files, configuring tools.
+user-invocable: false
 ---
 
 # ISEE Drift Detection
 
-Compare the current state of a repo against a prior ISEE assessment to detect what changed — improvements, regressions, and new signals.
+Compare the current repo state against `.github/isee-report.md` to surface what changed across all four ISEE layers — improvements, regressions, new signals, and unchanged gaps.
 
-## Process
+## Procedure
 
-### 1. Find prior assessment
+1. Find `.github/isee-report.md`; if missing, use the `ask_user` template in [`references/rubric.md`](references/rubric.md).
+2. Insert drift todos into SQL — use INSERT template from the rubric.
+3. Re-scan all four layers (same signals as assess skills, lighter analysis).
+4. For each prior finding, determine status: ✅ Improved · ✅ Maintained · ⚠️ Regressed · 🆕 New · ➖ Removed · 🔄 Unchanged gap.
+5. Compare layer scores prior → current; see score change patterns in the rubric.
+6. Generate drift report per [`references/output.md`](references/output.md).
+7. Offer to save updated baseline via `ask_user` (save template in rubric); if yes, overwrite `isee-report.md`.
+8. `UPDATE todos SET status = 'done' WHERE id = 'drift-report';`
 
-Look for `.github/isee-report.md` (saved by a previous assess run).
+## Examples
 
-If it exists:
-- Parse the prior findings and scores
-- Note the date and profile
+- **Improved:** Prior: `copilot-instructions.md` absent → Current: file added with priorities → ✅ Improved, Intent 🔴→🟡.
+- **Regression:** Prior: CI coverage threshold present → Current: threshold removed → ⚠️ Regressed, Structure 🟢→🟡.
+- **New signal:** Agent definition added since prior assessment → 🆕 New signal in Execution.
 
-If it doesn't exist:
+## Troubleshooting
 
-```
-Use ask_user:
-  message: "No prior ISEE assessment found (.github/isee-report.md). Would you like to run a full assessment first, or proceed with a baseline-free scan?"
-  requestedSchema:
-    properties:
-      approach:
-        type: string
-        title: "How to proceed?"
-        enum:
-          - "Run full assessment first (recommended)"
-          - "Scan current state without comparison"
-        default: "Run full assessment first (recommended)"
-    required: [approach]
-```
-
-If "Run full assessment" → hand off to the assess workflow.
-If "Scan without comparison" → proceed with current-state-only analysis.
-
-### 2. Re-scan all four layers
-
-Run the same detection logic as the four assess skills, but lighter — focus on signal presence/absence, not deep analysis.
-
-Track with SQL:
-
-```sql
-INSERT INTO todos (id, title, description, status) VALUES
-  ('drift-intent',    'Drift: Intent layer',    'Re-scan intent signals including intent levels and upstream context', 'pending'),
-  ('drift-structure', 'Drift: Structure layer',  'Re-scan structure signals including upstream structural inheritance', 'pending'),
-  ('drift-execution', 'Drift: Execution layer',  'Re-scan execution signals including work item traceability', 'pending'),
-  ('drift-evidence',  'Drift: Evidence layer',   'Re-scan evidence signals including feedback loop traceability', 'pending'),
-  ('drift-agents',    'Drift: Agents (optional)','Re-scan agent ISEE signals if agent definitions detected', 'pending'),
-  ('drift-report',    'Drift: Generate report',  'Compare and report including intent levels, context chain, agent changes', 'pending');
-
-INSERT INTO todo_deps (todo_id, depends_on) VALUES
-  ('drift-structure', 'drift-intent'),
-  ('drift-execution', 'drift-structure'),
-  ('drift-evidence',  'drift-execution'),
-  ('drift-agents',    'drift-evidence'),
-  ('drift-report',    'drift-agents');
-```
-
-### 3. Compare against prior assessment
-
-For each finding in the prior report, determine:
-
-| Status | Meaning |
-|--------|---------|
-| ✅ **Improved** | Was Absent/Unknown, now Present |
-| ✅ **Maintained** | Was Present, still Present |
-| ⚠️ **Regressed** | Was Present, now Absent |
-| 🆕 **New signal** | Not in prior report (new file, new config, new pattern) |
-| ➖ **Removed** | Prior signal source deleted (file removed, config deleted) |
-| 🔄 **Unchanged gap** | Was Absent, still Absent |
-
-### Additional drift dimensions for new signals
-
-**Intent levels drift:**
-- Did new intent levels appear? (e.g., architecture intent added)
-- Did breadth/depth/coherence change?
-- Were upstream context connections added or lost?
-
-**Context chain drift:**
-- Did traceability improve or degrade?
-- Were new upstream connections established?
-- Did any direct connections become indirect (or vice versa)?
-
-**Agent ISEE drift** (if agents present in both assessments):
-- Did per-agent ISEE scores change?
-- Were new agents added or existing ones removed?
-- Did evidence upstream flow improve?
-- Did system-level coordination patterns change?
-- Were agent packages from distribution systems added or updated?
-
-### 4. Score changes
-
-For each layer, compare prior score to current:
-- 🟢→🟢 **Maintained strong**
-- 🟡→🟢 **Improved to strong**
-- 🔴→🟡 **Improving**
-- 🟢→🟡 **Regressed**
-- 🟡→🔴 **Regressed significantly**
-- Same score but different findings → note what shifted
-
-### 5. Generate drift report
-
-```markdown
-# ISEE Drift Report
-
-**Repository:** {repo name}
-**Date:** {date}
-**Prior assessment:** {date of prior report}
-**Profile:** {profile}
-
----
-
-## Summary
-
-| Layer | Prior | Current | Change |
-|-------|-------|---------|--------|
-| Intent | 🟡 | 🟢 | ⬆️ Improved |
-| Structure | 🟢 | 🟢 | ➡️ Maintained |
-| Execution | 🔴 | 🟡 | ⬆️ Improving |
-| Evidence | 🟡 | 🟡 | ➡️ Unchanged |
-
----
-
-## Changes by Layer
-
-### Intent
-- ✅ Improved: {description}
-- 🔄 Unchanged gap: {description}
-
-### Structure
-- ✅ Maintained: {description}
-- 🆕 New: {description}
-
-### Execution
-- ✅ Improved: {description}
-- ⚠️ Regressed: {description}
-
-### Evidence
-- 🔄 Unchanged gap: {description}
-
----
-
-## Top Recommendations
-
-{3 prioritized actions based on drift findings}
-
----
-
-*Generated by [ISEE Advisor](https://github.com/suuus/isee-advisor) · ISEE Framework by Suzanne Daniels*
-```
-
-### 6. Save updated report
-
-```
-Use ask_user:
-  message: "Drift analysis complete. Save results?"
-  requestedSchema:
-    properties:
-      save:
-        type: boolean
-        title: "Update .github/isee-report.md with current assessment?"
-        description: "This becomes the new baseline for future drift detection."
-        default: true
-    required: [save]
-```
-
-If yes, overwrite `.github/isee-report.md` with the full current assessment (not the drift report — the drift report is conversation-only, the baseline is a clean assessment).
-
-## Important
-
-- Read-only during scanning — only write if user approves saving
-- Don't over-interpret small changes (one file added/removed is not a trend)
-- Regressions should be flagged but not alarming — context matters
-- If a prior recommendation was implemented, call it out positively
-- Drift detection is most useful when run periodically (suggest scheduling)
-
-## SQL Update
-
-```sql
-UPDATE todos SET status = 'done' WHERE id = 'drift-report';
-```
+- **No prior report:** Prompt user via ask_user — do not invent a baseline.
+- **Small changes:** Don't over-interpret one file added/removed — note but don't alarm.
+- **Prior recommendation implemented:** Call it out positively by name.
+- **Agents added since prior:** Trigger optional agent drift sub-scan (see rubric for agent drift dimensions).

@@ -1,0 +1,66 @@
+# waza compliance — after PR1
+Generated: 2026-05-21T16:27:09Z
+
+📊 Eval Coverage Grid
+| Skill | Tasks | Graders | Coverage |
+|-------|-------|---------|----------|
+| isee-advise | 1 | code, text | ✅ Full |
+| isee-assess-agents | 1 | code, text | ✅ Full |
+| isee-assess-evidence | 1 | code, text | ✅ Full |
+| isee-assess-execution | 1 | code, text | ✅ Full |
+| isee-assess-intent | 1 | code, text | ✅ Full |
+| isee-assess-report | 1 | code, text | ✅ Full |
+| isee-assess-structure | 1 | code, text | ✅ Full |
+| isee-drift | 1 | code, text | ✅ Full |
+
+---
+
+=== isee-advise ===
+📋 Compliance Score: Medium-High
+📊 Token Budget: 402 / 500 tokens
+   ✅  [module-count] Found 2 reference modules (2-3 is optimal)
+   ✅  [body-structure] Advisory 17: body structure quality
+   ✅  [scope-reduction] Capability scope: 5 signal(s) detected (5 USE FOR item(s), 3 level-2 heading(s), 1 numbered procedure(s))
+
+=== isee-assess-agents ===
+📋 Compliance Score: Medium-High
+📊 Token Budget: 495 / 500 tokens
+   ✅  [module-count] Found 3 reference modules (2-3 is optimal)
+   ✅  [body-structure] Advisory 17: body structure quality
+   ✅  [scope-reduction] Capability scope: 6 signal(s) detected (6 USE FOR item(s), 3 level-2 heading(s), 1 numbered procedure(s))
+
+=== isee-assess-evidence ===
+📋 Compliance Score: Medium-High
+📊 Token Budget: 454 / 500 tokens
+   ✅  [module-count] Found 2 reference modules (2-3 is optimal)
+   ✅  [body-structure] Advisory 17: body structure quality
+   ✅  [scope-reduction] Capability scope: 5 signal(s) detected (5 USE FOR item(s), 3 level-2 heading(s), 1 numbered procedure(s))
+
+=== isee-assess-execution ===
+📋 Compliance Score: Medium-High
+📊 Token Budget: 464 / 500 tokens
+   ✅  [module-count] Found 2 reference modules (2-3 is optimal)
+   ✅  [body-structure] Advisory 17: body structure quality
+   ✅  [scope-reduction] Capability scope: 5 signal(s) detected (5 USE FOR item(s), 3 level-2 heading(s), 1 numbered procedure(s))
+
+=== isee-assess-report ===
+📋 Compliance Score: Medium-High
+📊 Token Budget: 442 / 500 tokens
+   ✅  [module-count] Found 2 reference modules (2-3 is optimal)
+   ✅  [body-structure] Advisory 17: body structure quality
+   ✅  [scope-reduction] Capability scope: 5 signal(s) detected (5 USE FOR item(s), 3 level-2 heading(s), 1 numbered procedure(s))
+
+=== isee-assess-structure ===
+📋 Compliance Score: Medium-High
+📊 Token Budget: 478 / 500 tokens
+   ✅  [module-count] Found 2 reference modules (2-3 is optimal)
+   ✅  [body-structure] Advisory 17: body structure quality
+   ✅  [scope-reduction] Capability scope: 6 signal(s) detected (6 USE FOR item(s), 3 level-2 heading(s), 1 numbered procedure(s))
+
+=== isee-drift ===
+📋 Compliance Score: Medium-High
+📊 Token Budget: 478 / 500 tokens
+   ✅  [module-count] Found 2 reference modules (2-3 is optimal)
+   ✅  [body-structure] Advisory 17: body structure quality
+   ✅  [scope-reduction] Capability scope: 5 signal(s) detected (5 USE FOR item(s), 3 level-2 heading(s), 1 numbered procedure(s))
+
