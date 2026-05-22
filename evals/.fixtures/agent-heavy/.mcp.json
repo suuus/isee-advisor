@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": { "GITHUB_TOKEN": "${GITHUB_TOKEN}" },
+      "agentContexts": {
+        "triage": {
+          "tools": ["create_issue_comment", "add_label", "assign_issue", "read_file", "list_files"]
+        },
+        "reviewer": {
+          "tools": ["create_pr_comment", "request_changes", "approve_pr", "read_file", "list_files"]
+        }
+      }
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "--allowed-paths", "./src"],
+      "agentContexts": {
+        "triage": { "tools": [] },
+        "reviewer": { "tools": ["read_file", "list_directory"] }
+      }
+    }
+  }
+}

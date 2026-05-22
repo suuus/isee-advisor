@@ -1,0 +1,36 @@
+id: structure-regulated-enterprise
+name: Assess structure in a regulated-enterprise repo
+description: |
+  Regulated profile: full CI/CD, CodeQL scanning, dependency scanning, policy-as-code (OPA),
+  CODEOWNERS with compliance paths, SOC2 controls documented. The agent should find Structure
+  as Strong, cite the security-scan.yml and policy-check.yml, and note any gaps (branch
+  protection still unknown from repo scan, MCP not configured).
+tags:
+  - regulated-profile
+  - security-scanning
+  - policy-as-code
+inputs:
+  prompt: |
+    Assess the Structure layer of the repository in the current working directory using the
+    ISEE framework. Use the Regulated profile (compliance-heavy enterprise).
+
+    Scan for all structure signals: CI gates, branch protection, security scanning (CodeQL,
+    dependency scanning), policy-as-code, MCP tool scoping, and codified constraints.
+    Score each dimension Present/Absent/Unknown with confidence and citation.
+    Emit the structured output per your output template.
+
+    Do not ask clarifying questions — the profile is Regulated, proceed with what you can discover.
+  files:
+    - path: regulated-enterprise/README.md
+    - path: regulated-enterprise/.github/workflows/ci.yml
+    - path: regulated-enterprise/.github/workflows/security-scan.yml
+    - path: regulated-enterprise/.github/workflows/policy-check.yml
+    - path: regulated-enterprise/.github/workflows/deploy.yml
+    - path: regulated-enterprise/.github/CODEOWNERS
+    - path: regulated-enterprise/docs/compliance/soc2-controls.md
+    - path: regulated-enterprise/infra/terraform/main.tf
+expected:
+  output_contains:
+    - "Structure"
+  outcomes:
+    - type: task_completed

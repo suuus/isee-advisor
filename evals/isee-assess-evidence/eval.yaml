@@ -1,28 +1,52 @@
 name: isee-assess-evidence-eval
-description: Evaluation suite for isee-assess-evidence.
+description: Real eval for isee-assess-evidence across three fixture profiles.
 skill: isee-assess-evidence
 version: "1.0"
 config:
   trials_per_task: 1
-  timeout_seconds: 300
+  timeout_seconds: 600
   parallel: false
   executor: copilot-sdk
   model: claude-sonnet-4.6
 metrics:
   - name: task_completion
     weight: 1.0
-    threshold: 0.8
-    description: Did the skill complete the assigned task?
+    threshold: 0.7
+    description: Did the skill produce a structurally complete, well-grounded evidence assessment?
 graders:
-  - type: code
-    name: has_output
-    config:
-      assertions:
-        - "len(output) > 0"
   - type: text
-    name: relevant_content
+    name: required_structure
+    weight: 2.0
     config:
       regex_match:
-        - "(?i)(explain|describe|analyze|implement)"
+        - "(?i)evidence layer"
+        - "(?i)(present|absent|unknown)"
+        - "(?i)(feedback loop|signal|monitoring|observab)"
+        - "(?i)(ci|continuous integration|pipeline)"
+        - "(?i)recommendation"
+
+  - type: text
+    name: cites_fixture
+    weight: 1.5
+    config:
+      contains:
+        - "README"
+
+  - type: text
+    name: covers_evidence_dimensions
+    weight: 1.5
+    config:
+      regex_match:
+        - "(?i)(changelog|change log|release notes)"
+        - "(?i)(deploy|smoke test|post-deploy)"
+        - "(?i)(alert|monitor|dashboard|metric)"
+
+  - type: text
+    name: no_fabrication
+    weight: 1.0
+    config:
+      regex_not_match:
+        - "(?i)(found|exists|contains|I see)\\s.{0,40}(Grafana|Sentry|Splunk|New Relic)"
+
 tasks:
   - "tasks/*.yaml"

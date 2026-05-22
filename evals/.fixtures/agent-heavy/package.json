@@ -1,0 +1,10 @@
+{
+  "name": "devassist-platform",
+  "version": "1.0.0",
+  "description": "AI-assisted development platform with triage and reviewer agents",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "dependencies": { "typescript": "^5.4.0" }
+}

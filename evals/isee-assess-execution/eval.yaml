@@ -1,28 +1,56 @@
 name: isee-assess-execution-eval
-description: Evaluation suite for isee-assess-execution.
+description: Real eval for isee-assess-execution across three fixture profiles.
 skill: isee-assess-execution
 version: "1.0"
 config:
   trials_per_task: 1
-  timeout_seconds: 300
+  timeout_seconds: 600
   parallel: false
   executor: copilot-sdk
   model: claude-sonnet-4.6
 metrics:
   - name: task_completion
     weight: 1.0
-    threshold: 0.8
-    description: Did the skill complete the assigned task?
+    threshold: 0.7
+    description: Did the skill produce a structurally complete, well-grounded execution assessment?
 graders:
-  - type: code
-    name: has_output
-    config:
-      assertions:
-        - "len(output) > 0"
+  # Required headings and vocabulary
   - type: text
-    name: relevant_content
+    name: required_structure
+    weight: 2.0
     config:
       regex_match:
-        - "(?i)(explain|describe|analyze|implement)"
+        - "(?i)execution layer"
+        - "(?i)(present|absent|unknown)"
+        - "(?i)(codeowners|code owners|ownership)"
+        - "(?i)(coordination|context distribution)"
+        - "(?i)recommendation"
+
+  # Grounding
+  - type: text
+    name: cites_fixture
+    weight: 1.5
+    config:
+      contains:
+        - "README"
+
+  # Must cover key execution dimensions (ADR or agent definitions as alternatives)
+  - type: text
+    name: covers_execution_dimensions
+    weight: 1.5
+    config:
+      regex_match:
+        - "(?i)(pr template|pull request template|pull_request_template)"
+        - "(?i)(commit|work item|traceab)"
+        - "(?i)(adr|architecture decision|agent|\\.agent\\.md|skill definition)"
+
+  # No fabrication of CODEOWNERS in repos that don't have it
+  - type: text
+    name: no_fabrication
+    weight: 1.0
+    config:
+      regex_not_match:
+        - "(?i)(found|exists|contains|I see)\\s.{0,40}(JIRA|Confluence|Notion)"
+
 tasks:
   - "tasks/*.yaml"

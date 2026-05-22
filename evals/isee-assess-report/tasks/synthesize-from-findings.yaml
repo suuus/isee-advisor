@@ -1,0 +1,32 @@
+id: report-synthesize-findings
+name: Synthesize pre-baked findings into ISEE report
+description: |
+  The fixture provides a pre-baked findings.json with assessments for all 4 layers of a
+  payments-platform repo (Standard profile). The agent should read this JSON and generate
+  a complete ISEE report with layer scores (🟢/🟡/🔴), top recommendations, and context
+  chain summary. The report should reflect the Developing aggregate from the input data.
+tags:
+  - report-synthesis
+  - all-layers
+  - standard-profile
+inputs:
+  prompt: |
+    Generate an ISEE Assessment Report for the repository described in the findings file.
+
+    Read assessment-input/findings.json — it contains pre-assessed findings for all four
+    ISEE layers (Intent, Structure, Execution, Evidence) of a payments-platform repository.
+    Using those findings, compile the full structured ISEE report per your output template:
+    - Layer scores (🟢/🟡/🔴) with key finding per layer
+    - Top 3 prioritized recommendations
+    - Context chain summary (upstream/downstream/isolation risk)
+    - Aggregate maturity score with rationale
+
+    Do not re-assess the repository. Use only the findings provided in the JSON file.
+    Do not ask clarifying questions — compile the report from the provided data.
+  files:
+    - path: assessment-input/findings.json
+expected:
+  output_contains:
+    - "Intent"
+  outcomes:
+    - type: task_completed

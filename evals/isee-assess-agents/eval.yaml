@@ -1,28 +1,51 @@
 name: isee-assess-agents-eval
-description: Evaluation suite for isee-assess-agents.
+description: Real eval for isee-assess-agents — agent-heavy (assess) and lightweight-startup (skip).
 skill: isee-assess-agents
 version: "1.0"
 config:
   trials_per_task: 1
-  timeout_seconds: 300
+  timeout_seconds: 600
   parallel: false
   executor: copilot-sdk
   model: claude-sonnet-4.6
 metrics:
   - name: task_completion
     weight: 1.0
-    threshold: 0.8
-    description: Did the skill complete the assigned task?
+    threshold: 0.7
+    description: Did the skill correctly assess agents or correctly skip when none present?
 graders:
-  - type: code
-    name: has_output
-    config:
-      assertions:
-        - "len(output) > 0"
+  # Works for both: per-agent assessment (names layers) OR graceful SKIPPED response
   - type: text
-    name: relevant_content
+    name: required_structure
+    weight: 2.0
     config:
       regex_match:
-        - "(?i)(explain|describe|analyze|implement)"
+        - "(?i)(agent|skill|SKIPPED)"
+        - "(?i)(assessment|skipped|role|scope|guardrail|intent|structure|execution|evidence)"
+
+  # Agent assessment cites agent names; SKIPPED response cites "no agent" finding
+  - type: text
+    name: cites_fixture
+    weight: 1.5
+    config:
+      regex_match:
+        - "(?i)(triage|reviewer|SKIPPED|no agent|agent definition)"
+
+  # For full assessment: covers ISEE layers. For SKIPPED: passes trivially (no_fabrication still runs)
+  - type: text
+    name: covers_agent_dimensions
+    weight: 1.5
+    config:
+      regex_match:
+        - "(?i)(intent|structure|execution|evidence|skipped)"
+        - "(?i)(escalation|guardrail|scope|tool|role|no agent)"
+
+  - type: text
+    name: no_fabrication
+    weight: 1.0
+    config:
+      regex_not_match:
+        - "(?i)(found|exists|contains|I see)\\s.{0,40}(\\.github/agents/deploy\\.agent|orchestrator\\.agent)"
+
 tasks:
   - "tasks/*.yaml"

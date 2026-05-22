@@ -1,0 +1,33 @@
+id: evidence-standard-team
+name: Assess evidence in a standard-team repo (deploy smoke test = feedback)
+description: |
+  Standard profile: CI with coverage upload to Codecov, deploy.yml with smoke test and
+  on-call notification on failure, CHANGELOG.md maintained, Datadog mentioned in docs but
+  no dashboard URLs. The agent should score Evidence as Developing-to-Strong, cite deploy.yml
+  smoke test as a positive evidence signal, and flag monitoring as Unknown.
+tags:
+  - standard-profile
+  - deploy-feedback
+  - changelog
+inputs:
+  prompt: |
+    Assess the Evidence layer of the repository in the current working directory using the
+    ISEE framework. Use the Standard profile (multi-squad team).
+
+    Scan for CI reporting (coverage upload), deploy feedback loops (smoke tests, post-deploy
+    notifications), monitoring/alerting, CHANGELOG, and upstream signal flow. Score each
+    dimension Present/Absent/Unknown with confidence and citation. Cite specific files found.
+    Emit the structured output per your output template.
+
+    Do not ask clarifying questions — the profile is Standard, proceed with what you can discover.
+  files:
+    - path: standard-team/README.md
+    - path: standard-team/.github/workflows/ci.yml
+    - path: standard-team/.github/workflows/deploy.yml
+    - path: standard-team/CHANGELOG.md
+    - path: standard-team/docs/architecture.md
+expected:
+  output_contains:
+    - "Evidence"
+  outcomes:
+    - type: task_completed

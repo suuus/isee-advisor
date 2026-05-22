@@ -1,0 +1,18 @@
+# Payments Platform CODEOWNERS
+# Each squad owns their vertical slice.
+
+# Core payment processing
+/src/payments/          @payments-platform/core-payments
+/src/settlement/        @payments-platform/core-payments
+
+# Fraud and risk
+/src/risk/              @payments-platform/risk
+/src/disputes/          @payments-platform/risk
+
+# Infrastructure and platform
+/infra/                 @payments-platform/platform
+/.github/               @payments-platform/platform
+/src/gateway/           @payments-platform/platform
+
+# Shared libraries require cross-squad review
+/src/lib/               @payments-platform/core-payments @payments-platform/platform

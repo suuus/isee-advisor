@@ -1,28 +1,50 @@
 name: isee-drift-eval
-description: Evaluation suite for isee-drift.
+description: Real eval for isee-drift — detect improvements and regressions across fixture variants.
 skill: isee-drift
 version: "1.0"
 config:
   trials_per_task: 1
-  timeout_seconds: 300
+  timeout_seconds: 600
   parallel: false
   executor: copilot-sdk
   model: claude-sonnet-4.6
 metrics:
   - name: task_completion
     weight: 1.0
-    threshold: 0.8
-    description: Did the skill complete the assigned task?
+    threshold: 0.7
+    description: Did the skill correctly detect drift (improvement or regression) vs prior baseline?
 graders:
-  - type: code
-    name: has_output
-    config:
-      assertions:
-        - "len(output) > 0"
   - type: text
-    name: relevant_content
+    name: required_structure
+    weight: 2.0
     config:
       regex_match:
-        - "(?i)(explain|describe|analyze|implement)"
+        - "(?i)(drift|change|comparison)"
+        - "(?i)(✅|⚠️|improved|regressed|maintained|new)"
+        - "(?i)(prior|baseline|before|previous)"
+        - "(?i)(intent|structure|execution|evidence)"
+
+  - type: text
+    name: cites_fixture
+    weight: 1.5
+    config:
+      contains:
+        - "README"
+
+  - type: text
+    name: detects_direction
+    weight: 2.0
+    config:
+      regex_match:
+        - "(?i)(improved|regressed|better|worse|added|removed)"
+        - "(?i)(layer score|score change|🔴.{0,20}🟡|🟢.{0,20}🟡|🟡.{0,20}🟢)"
+
+  - type: text
+    name: no_fabrication
+    weight: 1.0
+    config:
+      regex_not_match:
+        - "(?i)(found|exists|contains|I see)\\s.{0,40}(Grafana dashboard|Datadog alert|PagerDuty rule)"
+
 tasks:
   - "tasks/*.yaml"

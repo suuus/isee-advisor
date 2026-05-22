@@ -1,0 +1,30 @@
+id: execution-lightweight-startup
+name: Assess execution in a lightweight-startup repo
+description: |
+  Lightweight profile: no CODEOWNERS, no PR template, no ADRs. Basic CI only. For a 3-person
+  startup this is acceptable — the agent should NOT mark these as critical gaps. Score should
+  be Developing (not Weak), with recommendations appropriate for the team size.
+tags:
+  - basic
+  - happy-path
+  - lightweight-profile
+inputs:
+  prompt: |
+    Assess the Execution layer of the repository in the current working directory using the
+    ISEE framework. Use the Lightweight profile (3-person startup).
+
+    Scan for CODEOWNERS, PR templates, commit message patterns (work item references), ADRs,
+    and agent definitions. Score each dimension Present/Absent/Unknown with confidence and
+    citation. Apply the Lightweight profile — missing CODEOWNERS is expected for this team size.
+    Emit the structured output per your output template.
+
+    Do not ask clarifying questions — the profile is Lightweight, proceed with what you can discover.
+  files:
+    - path: lightweight-startup/README.md
+    - path: lightweight-startup/package.json
+    - path: lightweight-startup/.github/ci.yml
+expected:
+  output_contains:
+    - "Execution"
+  outcomes:
+    - type: task_completed

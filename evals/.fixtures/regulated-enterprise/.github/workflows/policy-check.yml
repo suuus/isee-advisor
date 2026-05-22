@@ -1,0 +1,18 @@
+name: Policy as Code
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  opa-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run OPA policy checks
+        uses: open-policy-agent/opa-action@v2
+        with:
+          policy: infra/policies/
+          data: infra/terraform/
+          query: "data.healthdata.policy.deny"

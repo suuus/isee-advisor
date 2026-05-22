@@ -1,0 +1,19 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm ci --production
+      - run: ./scripts/deploy.sh
+      - name: Smoke test
+        run: ./scripts/smoke-test.sh
+      - name: Notify on failure
+        if: failure()
+        run: ./scripts/notify-on-call.sh
