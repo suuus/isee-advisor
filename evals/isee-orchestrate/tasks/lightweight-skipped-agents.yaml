@@ -1,0 +1,45 @@
+id: lightweight-skipped-agents
+name: Orchestrate full assess on lightweight-startup — agents phase should skip
+description: |
+  Full pipeline run on a startup repo with no agent definitions. The orchestrator must:
+  - Ask for profile (or accept Lightweight from the prompt)
+  - Invoke isee-assess-intent, -structure, -execution, -evidence in order
+  - Detect no .github/agents/ and SKIP phase 5
+  - Invoke isee-assess-report to compile findings
+
+  Skill_invocation grader validates the 5 required skills are invoked (excludes the
+  optional agents skill since it should be skipped). Final output is the report.
+tags:
+  - orchestration
+  - skip-handling
+  - lightweight
+inputs:
+  prompt: |
+    Run the full ISEE assessment on the repository at `lightweight-startup/`. Use the
+    Lightweight profile (no need to ask — proceed). Detect whether agent definitions
+    exist; if none, mark the agents phase as SKIPPED and proceed to the report. Do not
+    ask clarifying questions; act on what you can discover.
+  files:
+    - path: lightweight-startup/README.md
+    - path: lightweight-startup/package.json
+    - path: lightweight-startup/.github/ci.yml
+expected:
+  output_contains:
+    - "Report"
+  outcomes:
+    - type: task_completed
+graders:
+  # Verify the orchestrator invokes the correct phase skills in the right order.
+  # Agents skill is intentionally absent (fixture has no agents).
+  - type: skill_invocation
+    name: phase_order_no_agents
+    weight: 3.0
+    config:
+      required_skills:
+        - isee-assess-intent
+        - isee-assess-structure
+        - isee-assess-execution
+        - isee-assess-evidence
+        - isee-assess-report
+      mode: in_order
+      allow_extra: true
