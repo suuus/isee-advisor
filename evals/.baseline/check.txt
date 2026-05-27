@@ -1,0 +1,494 @@
+=== isee-advise ===
+
+🔍 Skill Readiness Check
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Skill: isee-advise
+
+📋 Compliance Score: Low
+   ❌  Needs significant improvement. Description too short or missing triggers.
+
+   Issues found:
+   ❌  Description is 87 chars (need 150+)
+   ❌  SKILL.md is 994 tokens (hard limit 500)
+
+📐 Spec Compliance: 8/9 checks passed
+   ❌  Does not fully meet agentskills.io specification.
+   ❌  [spec-allowed-fields] Unknown frontmatter fields: user-invocable
+     📎  agentskills.io spec allows: name, description, license, allowed-tools, metadata, compatibility
+
+📎 Links: 8/8 valid
+   ✅  All links valid.
+
+📊 Token Budget: 994 / 500 tokens
+   ❌  Exceeds limit by 494 tokens. Consider reducing content.
+
+🧪 Evaluation Suite: Found
+   ✅  eval.yaml detected. Run 'waza run eval.yaml' to test.
+
+📐 Schema Validation: Passed
+   ✅  eval.yaml schema valid
+   ✅  3 task file(s) validated
+
+💡 Advisory Checks
+   ✅  [module-count] Found 0 reference module(s)
+   ❌  [complexity] Complexity: comprehensive (994 tokens, 0 modules)
+   ✅  [negative-delta-risk] No negative delta risk patterns detected
+   ❌  [procedural-content] Description lacks procedural language (no common lead words or procedure keywords found)
+   ❌  [over-specificity] Over-specificity detected: hardcoded URLs with paths
+   ✅  [cross-model-density] Advisory 16: first sentence doesn't lead with action verb (reduces clarity)
+   ❌  [body-structure] Advisory 17: body structure quality — no examples section found; no error handling or troubleshooting section found
+   ✅  [progressive-disclosure] Content structure supports progressive disclosure
+   ✅  [scope-reduction] Capability scope: 5 signal(s) detected (5 level-2 heading(s), 1 numbered procedure(s))
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📈 Overall Readiness
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️  Your skill needs some work before submission.
+
+🎯 Next Steps
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+To improve your skill:
+
+1. Expand your description to at least 150 characters with clear usage guidelines
+2. Add a 'USE FOR:' section with 3-5 trigger phrases that activate the skill
+3. Add a 'DO NOT USE FOR:' section to clarify when NOT to use this skill
+4. Add routing clarity (e.g., **UTILITY SKILL**, INVOKES:, FOR SINGLE OPERATIONS:)
+5. Run 'waza dev' for interactive compliance improvement
+6. Fix spec violation [spec-allowed-fields]: Unknown frontmatter fields: user-invocable
+7. Reduce SKILL.md by 494 tokens. Run 'waza tokens suggest' for optimization tips
+
+=== isee-assess-agents ===
+
+🔍 Skill Readiness Check
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Skill: isee-assess-agents
+
+📋 Compliance Score: Low
+   ❌  Needs significant improvement. Description too short or missing triggers.
+
+   Issues found:
+   ❌  SKILL.md is 2734 tokens (hard limit 500)
+
+📐 Spec Compliance: 8/9 checks passed
+   ❌  Does not fully meet agentskills.io specification.
+   ❌  [spec-allowed-fields] Unknown frontmatter fields: user-invocable
+     📎  agentskills.io spec allows: name, description, license, allowed-tools, metadata, compatibility
+
+📎 Links: 0/0 valid
+   —  No links found.
+
+📊 Token Budget: 2734 / 500 tokens
+   ❌  Exceeds limit by 2234 tokens. Consider reducing content.
+
+🧪 Evaluation Suite: Found
+   ✅  eval.yaml detected. Run 'waza run eval.yaml' to test.
+
+📐 Schema Validation: Passed
+   ✅  eval.yaml schema valid
+   ✅  3 task file(s) validated
+
+💡 Advisory Checks
+   ✅  [module-count] Found 0 reference module(s)
+   ❌  [complexity] Complexity: comprehensive (2734 tokens, 0 modules)
+   ✅  [negative-delta-risk] No negative delta risk patterns detected
+   ❌  [procedural-content] Description lacks procedural language (no common lead words or procedure keywords found)
+   ✅  [over-specificity] No over-specificity patterns detected
+   ✅  [cross-model-density] Advisory 16: first sentence doesn't lead with action verb (reduces clarity)
+   ❌  [body-structure] Advisory 17: body structure quality — no examples section found
+   ✅  [progressive-disclosure] Content structure supports progressive disclosure
+   ✅  [scope-reduction] Capability scope: 8 signal(s) detected (8 level-2 heading(s), 2 numbered procedure(s))
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📈 Overall Readiness
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️  Your skill needs some work before submission.
+
+🎯 Next Steps
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+To improve your skill:
+
+1. Add a 'USE FOR:' section with 3-5 trigger phrases that activate the skill
+2. Add a 'DO NOT USE FOR:' section to clarify when NOT to use this skill
+3. Add routing clarity (e.g., **UTILITY SKILL**, INVOKES:, FOR SINGLE OPERATIONS:)
+4. Run 'waza dev' for interactive compliance improvement
+5. Fix spec violation [spec-allowed-fields]: Unknown frontmatter fields: user-invocable
+6. Reduce SKILL.md by 2234 tokens. Run 'waza tokens suggest' for optimization tips
+
+=== isee-assess-evidence ===
+
+🔍 Skill Readiness Check
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Skill: isee-assess-evidence
+
+📋 Compliance Score: Low
+   ❌  Needs significant improvement. Description too short or missing triggers.
+
+   Issues found:
+   ❌  Description is 105 chars (need 150+)
+   ❌  SKILL.md is 1619 tokens (hard limit 500)
+
+📐 Spec Compliance: 8/9 checks passed
+   ❌  Does not fully meet agentskills.io specification.
+   ❌  [spec-allowed-fields] Unknown frontmatter fields: user-invocable
+     📎  agentskills.io spec allows: name, description, license, allowed-tools, metadata, compatibility
+
+📎 Links: 0/0 valid
+   —  No links found.
+
+📊 Token Budget: 1619 / 500 tokens
+   ❌  Exceeds limit by 1119 tokens. Consider reducing content.
+
+🧪 Evaluation Suite: Found
+   ✅  eval.yaml detected. Run 'waza run eval.yaml' to test.
+
+📐 Schema Validation: Passed
+   ✅  eval.yaml schema valid
+   ✅  3 task file(s) validated
+
+💡 Advisory Checks
+   ✅  [module-count] Found 0 reference module(s)
+   ❌  [complexity] Complexity: comprehensive (1619 tokens, 0 modules)
+   ✅  [negative-delta-risk] No negative delta risk patterns detected
+   ✅  [procedural-content] Description contains procedural language
+   ✅  [over-specificity] No over-specificity patterns detected
+   ✅  [cross-model-density] Advisory 16: first sentence doesn't lead with action verb (reduces clarity)
+   ❌  [body-structure] Advisory 17: body structure quality — no examples section found; no error handling or troubleshooting section found
+   ✅  [progressive-disclosure] Content structure supports progressive disclosure
+   ✅  [scope-reduction] Capability scope: 6 signal(s) detected (6 level-2 heading(s), 2 numbered procedure(s))
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📈 Overall Readiness
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️  Your skill needs some work before submission.
+
+🎯 Next Steps
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+To improve your skill:
+
+1. Expand your description to at least 150 characters with clear usage guidelines
+2. Add a 'USE FOR:' section with 3-5 trigger phrases that activate the skill
+3. Add a 'DO NOT USE FOR:' section to clarify when NOT to use this skill
+4. Add routing clarity (e.g., **UTILITY SKILL**, INVOKES:, FOR SINGLE OPERATIONS:)
+5. Run 'waza dev' for interactive compliance improvement
+6. Fix spec violation [spec-allowed-fields]: Unknown frontmatter fields: user-invocable
+7. Reduce SKILL.md by 1119 tokens. Run 'waza tokens suggest' for optimization tips
+
+=== isee-assess-execution ===
+
+🔍 Skill Readiness Check
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Skill: isee-assess-execution
+
+📋 Compliance Score: Low
+   ❌  Needs significant improvement. Description too short or missing triggers.
+
+   Issues found:
+   ❌  Description is 101 chars (need 150+)
+   ❌  SKILL.md is 1317 tokens (hard limit 500)
+
+📐 Spec Compliance: 8/9 checks passed
+   ❌  Does not fully meet agentskills.io specification.
+   ❌  [spec-allowed-fields] Unknown frontmatter fields: user-invocable
+     📎  agentskills.io spec allows: name, description, license, allowed-tools, metadata, compatibility
+
+📎 Links: 0/0 valid
+   —  No links found.
+
+📊 Token Budget: 1317 / 500 tokens
+   ❌  Exceeds limit by 817 tokens. Consider reducing content.
+
+🧪 Evaluation Suite: Found
+   ✅  eval.yaml detected. Run 'waza run eval.yaml' to test.
+
+📐 Schema Validation: Passed
+   ✅  eval.yaml schema valid
+   ✅  3 task file(s) validated
+
+💡 Advisory Checks
+   ✅  [module-count] Found 0 reference module(s)
+   ❌  [complexity] Complexity: comprehensive (1317 tokens, 0 modules)
+   ✅  [negative-delta-risk] No negative delta risk patterns detected
+   ❌  [procedural-content] Description lacks procedural language (no common lead words or procedure keywords found)
+   ✅  [over-specificity] No over-specificity patterns detected
+   ✅  [cross-model-density] Advisory 16: first sentence doesn't lead with action verb (reduces clarity)
+   ❌  [body-structure] Advisory 17: body structure quality — no examples section found; no error handling or troubleshooting section found
+   ✅  [progressive-disclosure] Content structure supports progressive disclosure
+   ✅  [scope-reduction] Capability scope: 6 signal(s) detected (6 level-2 heading(s), 1 numbered procedure(s))
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📈 Overall Readiness
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️  Your skill needs some work before submission.
+
+🎯 Next Steps
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+To improve your skill:
+
+1. Expand your description to at least 150 characters with clear usage guidelines
+2. Add a 'USE FOR:' section with 3-5 trigger phrases that activate the skill
+3. Add a 'DO NOT USE FOR:' section to clarify when NOT to use this skill
+4. Add routing clarity (e.g., **UTILITY SKILL**, INVOKES:, FOR SINGLE OPERATIONS:)
+5. Run 'waza dev' for interactive compliance improvement
+6. Fix spec violation [spec-allowed-fields]: Unknown frontmatter fields: user-invocable
+7. Reduce SKILL.md by 817 tokens. Run 'waza tokens suggest' for optimization tips
+
+=== isee-assess-intent ===
+
+🔍 Skill Readiness Check
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Skill: isee-assess-intent
+
+📋 Compliance Score: Low
+   ❌  Needs significant improvement. Description too short or missing triggers.
+
+   Issues found:
+   ❌  Description is 106 chars (need 150+)
+   ❌  SKILL.md is 2062 tokens (hard limit 500)
+
+📐 Spec Compliance: 8/9 checks passed
+   ❌  Does not fully meet agentskills.io specification.
+   ❌  [spec-allowed-fields] Unknown frontmatter fields: user-invocable
+     📎  agentskills.io spec allows: name, description, license, allowed-tools, metadata, compatibility
+
+📎 Links: 0/0 valid
+   —  No links found.
+
+📊 Token Budget: 2062 / 500 tokens
+   ❌  Exceeds limit by 1562 tokens. Consider reducing content.
+
+🧪 Evaluation Suite: Found
+   ✅  eval.yaml detected. Run 'waza run eval.yaml' to test.
+
+📐 Schema Validation: Passed
+   ✅  eval.yaml schema valid
+   ✅  3 task file(s) validated
+
+💡 Advisory Checks
+   ✅  [module-count] Found 0 reference module(s)
+   ❌  [complexity] Complexity: comprehensive (2062 tokens, 0 modules)
+   ✅  [negative-delta-risk] No negative delta risk patterns detected
+   ❌  [procedural-content] Description lacks procedural language (no common lead words or procedure keywords found)
+   ✅  [over-specificity] No over-specificity patterns detected
+   ✅  [cross-model-density] Advisory 16: first sentence doesn't lead with action verb (reduces clarity)
+   ❌  [body-structure] Advisory 17: body structure quality — no examples section found; no error handling or troubleshooting section found
+   ✅  [progressive-disclosure] Content structure supports progressive disclosure
+   ✅  [scope-reduction] Capability scope: 6 signal(s) detected (6 level-2 heading(s), 1 numbered procedure(s))
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📈 Overall Readiness
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️  Your skill needs some work before submission.
+
+🎯 Next Steps
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+To improve your skill:
+
+1. Expand your description to at least 150 characters with clear usage guidelines
+2. Add a 'USE FOR:' section with 3-5 trigger phrases that activate the skill
+3. Add a 'DO NOT USE FOR:' section to clarify when NOT to use this skill
+4. Add routing clarity (e.g., **UTILITY SKILL**, INVOKES:, FOR SINGLE OPERATIONS:)
+5. Run 'waza dev' for interactive compliance improvement
+6. Fix spec violation [spec-allowed-fields]: Unknown frontmatter fields: user-invocable
+7. Reduce SKILL.md by 1562 tokens. Run 'waza tokens suggest' for optimization tips
+
+=== isee-assess-report ===
+
+🔍 Skill Readiness Check
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Skill: isee-assess-report
+
+📋 Compliance Score: Low
+   ❌  Needs significant improvement. Description too short or missing triggers.
+
+   Issues found:
+   ❌  Description is 94 chars (need 150+)
+   ❌  SKILL.md is 1774 tokens (hard limit 500)
+
+📐 Spec Compliance: 8/9 checks passed
+   ❌  Does not fully meet agentskills.io specification.
+   ❌  [spec-allowed-fields] Unknown frontmatter fields: user-invocable
+     📎  agentskills.io spec allows: name, description, license, allowed-tools, metadata, compatibility
+
+📎 Links: 0/0 valid
+   —  No links found.
+
+📊 Token Budget: 1774 / 500 tokens
+   ❌  Exceeds limit by 1274 tokens. Consider reducing content.
+
+🧪 Evaluation Suite: Found
+   ✅  eval.yaml detected. Run 'waza run eval.yaml' to test.
+
+📐 Schema Validation: Passed
+   ✅  eval.yaml schema valid
+   ✅  3 task file(s) validated
+
+💡 Advisory Checks
+   ✅  [module-count] Found 0 reference module(s)
+   ❌  [complexity] Complexity: comprehensive (1774 tokens, 0 modules)
+   ✅  [negative-delta-risk] No negative delta risk patterns detected
+   ❌  [procedural-content] Description lacks procedural language (no common lead words or procedure keywords found)
+   ❌  [over-specificity] Over-specificity detected: hardcoded URLs with paths
+   ✅  [cross-model-density] Advisory 16: first sentence doesn't lead with action verb (reduces clarity)
+   ❌  [body-structure] Advisory 17: body structure quality — no examples section found
+   ❌  [progressive-disclosure] Advisory 18: progressive disclosure — 1 code block(s) exceed 50 lines (suggest moving to references/)
+   ✅  [scope-reduction] Capability scope: 11 signal(s) detected (11 level-2 heading(s), 1 numbered procedure(s))
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📈 Overall Readiness
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️  Your skill needs some work before submission.
+
+🎯 Next Steps
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+To improve your skill:
+
+1. Expand your description to at least 150 characters with clear usage guidelines
+2. Add a 'USE FOR:' section with 3-5 trigger phrases that activate the skill
+3. Add a 'DO NOT USE FOR:' section to clarify when NOT to use this skill
+4. Add routing clarity (e.g., **UTILITY SKILL**, INVOKES:, FOR SINGLE OPERATIONS:)
+5. Run 'waza dev' for interactive compliance improvement
+6. Fix spec violation [spec-allowed-fields]: Unknown frontmatter fields: user-invocable
+7. Reduce SKILL.md by 1274 tokens. Run 'waza tokens suggest' for optimization tips
+
+=== isee-assess-structure ===
+
+🔍 Skill Readiness Check
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Skill: isee-assess-structure
+
+📋 Compliance Score: Low
+   ❌  Needs significant improvement. Description too short or missing triggers.
+
+   Issues found:
+   ❌  Description is 102 chars (need 150+)
+   ❌  SKILL.md is 1413 tokens (hard limit 500)
+
+📐 Spec Compliance: 8/9 checks passed
+   ❌  Does not fully meet agentskills.io specification.
+   ❌  [spec-allowed-fields] Unknown frontmatter fields: user-invocable
+     📎  agentskills.io spec allows: name, description, license, allowed-tools, metadata, compatibility
+
+📎 Links: 0/0 valid
+   —  No links found.
+
+📊 Token Budget: 1413 / 500 tokens
+   ❌  Exceeds limit by 913 tokens. Consider reducing content.
+
+🧪 Evaluation Suite: Found
+   ✅  eval.yaml detected. Run 'waza run eval.yaml' to test.
+
+📐 Schema Validation: Passed
+   ✅  eval.yaml schema valid
+   ✅  3 task file(s) validated
+
+💡 Advisory Checks
+   ✅  [module-count] Found 0 reference module(s)
+   ❌  [complexity] Complexity: comprehensive (1413 tokens, 0 modules)
+   ✅  [negative-delta-risk] No negative delta risk patterns detected
+   ✅  [procedural-content] Description contains procedural language
+   ✅  [over-specificity] No over-specificity patterns detected
+   ✅  [cross-model-density] Advisory 16: first sentence doesn't lead with action verb (reduces clarity)
+   ❌  [body-structure] Advisory 17: body structure quality — no examples section found
+   ✅  [progressive-disclosure] Content structure supports progressive disclosure
+   ✅  [scope-reduction] Capability scope: 6 signal(s) detected (6 level-2 heading(s), 1 numbered procedure(s))
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📈 Overall Readiness
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️  Your skill needs some work before submission.
+
+🎯 Next Steps
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+To improve your skill:
+
+1. Expand your description to at least 150 characters with clear usage guidelines
+2. Add a 'USE FOR:' section with 3-5 trigger phrases that activate the skill
+3. Add a 'DO NOT USE FOR:' section to clarify when NOT to use this skill
+4. Add routing clarity (e.g., **UTILITY SKILL**, INVOKES:, FOR SINGLE OPERATIONS:)
+5. Run 'waza dev' for interactive compliance improvement
+6. Fix spec violation [spec-allowed-fields]: Unknown frontmatter fields: user-invocable
+7. Reduce SKILL.md by 913 tokens. Run 'waza tokens suggest' for optimization tips
+
+=== isee-drift ===
+
+🔍 Skill Readiness Check
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Skill: isee-drift
+
+📋 Compliance Score: Low
+   ❌  Needs significant improvement. Description too short or missing triggers.
+
+   Issues found:
+   ❌  Description is 114 chars (need 150+)
+   ❌  SKILL.md is 1427 tokens (hard limit 500)
+
+📐 Spec Compliance: 8/9 checks passed
+   ❌  Does not fully meet agentskills.io specification.
+   ❌  [spec-allowed-fields] Unknown frontmatter fields: user-invocable
+     📎  agentskills.io spec allows: name, description, license, allowed-tools, metadata, compatibility
+
+📎 Links: 0/0 valid
+   —  No links found.
+
+📊 Token Budget: 1427 / 500 tokens
+   ❌  Exceeds limit by 927 tokens. Consider reducing content.
+
+🧪 Evaluation Suite: Found
+   ✅  eval.yaml detected. Run 'waza run eval.yaml' to test.
+
+📐 Schema Validation: Passed
+   ✅  eval.yaml schema valid
+   ✅  3 task file(s) validated
+
+💡 Advisory Checks
+   ✅  [module-count] Found 0 reference module(s)
+   ❌  [complexity] Complexity: comprehensive (1427 tokens, 0 modules)
+   ✅  [negative-delta-risk] No negative delta risk patterns detected
+   ❌  [procedural-content] Description lacks procedural language (no common lead words or procedure keywords found)
+   ✅  [over-specificity] No over-specificity patterns detected
+   ✅  [cross-model-density] Advisory 16: first sentence doesn't lead with action verb (reduces clarity)
+   ❌  [body-structure] Advisory 17: body structure quality — no examples section found; no error handling or troubleshooting section found
+   ✅  [progressive-disclosure] Content structure supports progressive disclosure
+   ✅  [scope-reduction] Capability scope: 6 signal(s) detected (6 level-2 heading(s))
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📈 Overall Readiness
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️  Your skill needs some work before submission.
+
+🎯 Next Steps
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+To improve your skill:
+
+1. Expand your description to at least 150 characters with clear usage guidelines
+2. Add a 'USE FOR:' section with 3-5 trigger phrases that activate the skill
+3. Add a 'DO NOT USE FOR:' section to clarify when NOT to use this skill
+4. Add routing clarity (e.g., **UTILITY SKILL**, INVOKES:, FOR SINGLE OPERATIONS:)
+5. Run 'waza dev' for interactive compliance improvement
+6. Fix spec violation [spec-allowed-fields]: Unknown frontmatter fields: user-invocable
+7. Reduce SKILL.md by 927 tokens. Run 'waza tokens suggest' for optimization tips
+
