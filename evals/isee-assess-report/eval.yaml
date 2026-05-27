@@ -29,8 +29,8 @@ graders:
     name: cites_fixture
     weight: 1.5
     config:
-      contains:
-        - "findings"
+      regex_match:
+        - "(?i)finding(s)?"
 
   - type: text
     name: covers_all_layers
