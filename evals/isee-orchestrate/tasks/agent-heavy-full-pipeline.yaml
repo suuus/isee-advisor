@@ -1,0 +1,58 @@
+id: agent-heavy-full-pipeline
+name: Orchestrate full assess on agent-heavy — all 6 phases run
+description: |
+  Full pipeline run on a repo that has agent definitions and skill playbooks. The
+  orchestrator must:
+  - Invoke isee-assess-intent, -structure, -execution, -evidence in order
+  - Detect .github/agents/ and .github/skills/ — run isee-assess-agents
+  - Invoke isee-assess-report to compile findings (including agent assessment)
+
+  Skill_invocation grader validates all 6 phase skills are invoked, including agents.
+tags:
+  - orchestration
+  - agents-present
+  - standard
+inputs:
+  prompt: |
+    Run the full ISEE assessment on the repository at `agent-heavy/`. Use the Standard
+    profile (proceed — no need to ask). This repo has agent definitions; the agents
+    phase should run, not skip. Do not ask clarifying questions; act on what you can
+    discover.
+  files:
+    - path: agent-heavy/README.md
+    - path: agent-heavy/package.json
+    - path: agent-heavy/.mcp.json
+    - path: agent-heavy/.github/copilot-instructions.md
+    - path: agent-heavy/.github/agents/triage.agent.md
+    - path: agent-heavy/.github/agents/reviewer.agent.md
+    - path: agent-heavy/.github/skills/triage-route/SKILL.md
+    - path: agent-heavy/.github/skills/security-check/SKILL.md
+    - path: agent-heavy/.github/workflows/agent-eval.yml
+expected:
+  output_contains:
+    - "Report"
+  outcomes:
+    - type: task_completed
+graders:
+  - type: skill_invocation
+    name: phase_order_with_agents
+    weight: 3.0
+    config:
+      required_skills:
+        - isee-assess-intent
+        - isee-assess-structure
+        - isee-assess-execution
+        - isee-assess-evidence
+        - isee-assess-agents
+        - isee-assess-report
+      mode: in_order
+      allow_extra: true
+
+  # The final report should mention agent-level findings since agents were assessed
+  - type: text
+    name: report_includes_agents
+    weight: 1.0
+    config:
+      regex_match:
+        - "(?i)(agent|agentic system)"
+        - "(?i)(triage|reviewer)"

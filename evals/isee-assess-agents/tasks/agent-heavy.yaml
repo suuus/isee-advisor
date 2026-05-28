@@ -1,0 +1,37 @@
+id: agents-agent-heavy
+name: Assess agents in an agent-heavy repo
+description: |
+  Multi-agent system: triage.agent.md and reviewer.agent.md with role statements, tool lists,
+  guardrails, and escalation paths. MCP.json has per-agent tool scoping (not wildcard). Skills
+  defined. The agent should produce per-agent ISEE assessments (all 4 layers) plus a system-level
+  assessment. MCP scoping should be flagged as a strong positive signal.
+tags:
+  - agent-heavy
+  - multi-agent
+  - per-agent-isee
+inputs:
+  prompt: |
+    Assess agents and agentic systems in the repository in the current working directory using
+    the ISEE framework.
+
+    Find all agent definitions (.github/agents/), skill definitions (.github/skills/), MCP
+    configuration (.mcp.json), and cross-agent coordination rules (.github/copilot-instructions.md).
+    For each agent, assess all four ISEE layers. Then produce a system-level assessment covering
+    multi-agent coordination, escalation paths, and evidence quality. Emit the structured output
+    per your output template.
+
+    Do not ask clarifying questions — proceed with what you can discover.
+  files:
+    - path: agent-heavy/README.md
+    - path: agent-heavy/.github/agents/triage.agent.md
+    - path: agent-heavy/.github/agents/reviewer.agent.md
+    - path: agent-heavy/.github/skills/triage-route/SKILL.md
+    - path: agent-heavy/.github/skills/security-check/SKILL.md
+    - path: agent-heavy/.github/copilot-instructions.md
+    - path: agent-heavy/.mcp.json
+    - path: agent-heavy/.github/workflows/agent-eval.yml
+expected:
+  output_contains:
+    - "triage"
+  outcomes:
+    - type: task_completed

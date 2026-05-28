@@ -1,0 +1,50 @@
+name: isee-orchestrate-eval
+description: |
+  Agent-level eval. Validates that the orchestrator skill invokes the layer skills in
+  the correct order, handles SKIPPED phases gracefully (lightweight-startup has no
+  agents), and produces a coherent final report.
+skill: isee-orchestrate
+version: "1.0"
+config:
+  trials_per_task: 1
+  timeout_seconds: 1200
+  parallel: false
+  executor: copilot-sdk
+  model: claude-sonnet-4.6
+metrics:
+  - name: orchestration_quality
+    weight: 1.0
+    threshold: 0.7
+    description: Did the orchestrator invoke the right phases in the right order and produce a coherent report?
+graders:
+  # Structural: the final report has the rubric structure
+  - type: text
+    name: report_structure
+    weight: 2.0
+    config:
+      regex_match:
+        - "(?i)isee assessment report|isee report"
+        - "(?i)intent"
+        - "(?i)structure"
+        - "(?i)execution"
+        - "(?i)evidence"
+        - "(?i)(top|key) recommendations?"
+
+  # The orchestrator should track its work — phase todos seeded and updated
+  - type: text
+    name: tracks_phases
+    weight: 1.0
+    config:
+      regex_match:
+        - "(?i)phase|assess-(intent|structure|execution|evidence|report)"
+
+  # Profile selection happens at the start
+  - type: text
+    name: asks_for_profile
+    weight: 1.0
+    config:
+      regex_match:
+        - "(?i)(lightweight|standard|regulated)"
+
+tasks:
+  - "tasks/*.yaml"

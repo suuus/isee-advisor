@@ -1,0 +1,34 @@
+id: execution-standard-team
+name: Assess execution in a standard-team repo
+description: |
+  Standard profile: CODEOWNERS with module-level ownership across 3 squads, PR template
+  with outcome and trade-off fields, ADR-0001 present. The agent should find Execution as
+  Strong, cite all three artifacts, and note that work item traceability is unknown (no
+  commit message examples provided).
+tags:
+  - standard-profile
+  - codeowners
+  - pr-template
+  - adr
+inputs:
+  prompt: |
+    Assess the Execution layer of the repository in the current working directory using the
+    ISEE framework. Use the Standard profile (multi-squad team).
+
+    Scan for CODEOWNERS, PR templates, commit message patterns, ADRs, and agent definitions.
+    Score each dimension Present/Absent/Unknown with confidence and citation. Cite specific
+    files you found. Emit the structured output per your output template.
+
+    Do not ask clarifying questions — the profile is Standard, proceed with what you can discover.
+  files:
+    - path: standard-team/README.md
+    - path: standard-team/.github/CODEOWNERS
+    - path: standard-team/.github/pull_request_template.md
+    - path: standard-team/docs/adr/0001-fastify-over-express.md
+    - path: standard-team/.github/copilot-instructions.md
+    - path: standard-team/package.json
+expected:
+  output_contains:
+    - "Execution"
+  outcomes:
+    - type: task_completed

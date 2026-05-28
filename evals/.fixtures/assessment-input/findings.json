@@ -1,0 +1,166 @@
+{
+  "repository": "payments-platform",
+  "profile": "Standard",
+  "assessed_at": "2024-03-15T10:00:00Z",
+  "layers": {
+    "intent": {
+      "score": "developing",
+      "breadth": 3,
+      "depth": 2,
+      "coherence": "consistent",
+      "findings": [
+        {
+          "level": "organizational",
+          "status": "present",
+          "confidence": "high",
+          "citation": "README.md:1",
+          "signal": "5 outcome statements with measurable targets",
+          "impact": "Team has clear success criteria"
+        },
+        {
+          "level": "business",
+          "status": "present",
+          "confidence": "high",
+          "citation": ".github/copilot-instructions.md:3",
+          "signal": "Priorities declared in order with rationale",
+          "impact": "Agents and contributors can make aligned decisions"
+        },
+        {
+          "level": "product",
+          "status": "present",
+          "confidence": "medium",
+          "citation": "README.md:8",
+          "signal": "Merchant onboarding outcome specified",
+          "impact": "Product intent is partially visible"
+        },
+        {
+          "level": "architecture",
+          "status": "absent",
+          "confidence": "high",
+          "citation": null,
+          "signal": "No copilot-instructions.md architectural section",
+          "impact": "Agents cannot make architecture-aligned decisions",
+          "recommendation": "Add architecture principles to copilot-instructions.md"
+        },
+        {
+          "level": "platform",
+          "status": "absent",
+          "confidence": "medium",
+          "citation": null,
+          "signal": "No platform team context found",
+          "impact": "Platform intent not codified",
+          "recommendation": "Add platform context or link to platform team charter"
+        }
+      ]
+    },
+    "structure": {
+      "score": "strong",
+      "findings": [
+        {
+          "dimension": "ci_gates",
+          "status": "present",
+          "confidence": "high",
+          "citation": ".github/workflows/ci.yml",
+          "signal": "Lint + test + 80% coverage threshold",
+          "impact": "Quality baseline enforced automatically"
+        },
+        {
+          "dimension": "branch_protection",
+          "status": "unknown",
+          "confidence": "low",
+          "citation": null,
+          "signal": "Not visible from repo scan",
+          "impact": "Cannot assess merge guardrails",
+          "recommendation": "Verify branch protection rules are enabled"
+        },
+        {
+          "dimension": "mcp_tool_scoping",
+          "status": "absent",
+          "confidence": "high",
+          "citation": null,
+          "signal": "No .mcp.json found",
+          "impact": "Agent tool access ungoverned",
+          "recommendation": "Add .mcp.json with scoped tool lists per agent context"
+        }
+      ]
+    },
+    "execution": {
+      "score": "strong",
+      "findings": [
+        {
+          "dimension": "codeowners",
+          "status": "present",
+          "confidence": "high",
+          "citation": ".github/CODEOWNERS",
+          "signal": "Module-level ownership with 3 squads",
+          "impact": "Review routing is automatic"
+        },
+        {
+          "dimension": "pr_template",
+          "status": "present",
+          "confidence": "high",
+          "citation": ".github/pull_request_template.md",
+          "signal": "Outcome, trade-off, and compliance checklist fields",
+          "impact": "Context travels with the code change"
+        },
+        {
+          "dimension": "adr",
+          "status": "present",
+          "confidence": "high",
+          "citation": "docs/adr/0001-fastify-over-express.md",
+          "signal": "Decision with context, alternatives, consequences",
+          "impact": "Architectural memory is persisted"
+        }
+      ]
+    },
+    "evidence": {
+      "score": "developing",
+      "findings": [
+        {
+          "dimension": "ci_reporting",
+          "status": "present",
+          "confidence": "high",
+          "citation": ".github/workflows/ci.yml + Codecov",
+          "signal": "Coverage uploaded to Codecov on every push",
+          "impact": "Test coverage is visible"
+        },
+        {
+          "dimension": "deploy_feedback",
+          "status": "present",
+          "confidence": "high",
+          "citation": ".github/workflows/deploy.yml",
+          "signal": "Smoke test runs post-deploy; on-call notified on failure",
+          "impact": "Deploy failures surface immediately"
+        },
+        {
+          "dimension": "monitoring",
+          "status": "unknown",
+          "confidence": "low",
+          "citation": "docs/architecture.md",
+          "signal": "Datadog mentioned but no dashboard URLs or alert configs found in repo",
+          "impact": "Cannot assess alerting quality",
+          "recommendation": "Add monitoring-as-code or link to runbook with dashboard URLs"
+        },
+        {
+          "dimension": "changelog",
+          "status": "present",
+          "confidence": "high",
+          "citation": "CHANGELOG.md",
+          "signal": "CHANGELOG maintained with security and fix sections",
+          "impact": "Change history is visible"
+        }
+      ]
+    }
+  },
+  "aggregate_score": "developing",
+  "top_recommendations": [
+    "Add architecture principles to copilot-instructions.md (Intent → Architecture level)",
+    "Add .mcp.json with scoped tool lists (Structure → MCP guardrails)",
+    "Add monitoring-as-code or runbook with dashboard URLs (Evidence → monitoring)"
+  ],
+  "context_chain": {
+    "upstream": "copilot-instructions.md present with priorities",
+    "downstream": "deploy.yml with smoke test → on-call notification",
+    "isolation_risk": "Low"
+  }
+}

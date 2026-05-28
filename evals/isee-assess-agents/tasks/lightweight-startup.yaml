@@ -1,0 +1,28 @@
+id: agents-lightweight-startup
+name: Skip agent assessment when no agents present
+description: |
+  Lightweight startup: no agent definitions, no .mcp.json, no skills. The skill should
+  detect no agent definitions and mark [SKIPPED] — not fail or fabricate agents.
+  This tests the graceful skip behavior.
+tags:
+  - no-agents
+  - skip-behavior
+  - negative-case
+inputs:
+  prompt: |
+    Assess agents and agentic systems in the repository in the current working directory using
+    the ISEE framework.
+
+    Check for agent definitions (.github/agents/), skill definitions (.github/skills/), MCP
+    configuration (.mcp.json), and agent sections in .github/copilot-instructions.md. If no
+    agent definitions are found, mark [SKIPPED — No agent definitions detected] and stop.
+    Do not fabricate agents. Emit the structured output per your output template.
+  files:
+    - path: lightweight-startup/README.md
+    - path: lightweight-startup/package.json
+    - path: lightweight-startup/.github/ci.yml
+expected:
+  output_contains:
+    - "SKIPPED"
+  outcomes:
+    - type: task_completed

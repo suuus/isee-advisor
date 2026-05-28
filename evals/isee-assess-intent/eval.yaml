@@ -1,28 +1,73 @@
 name: isee-assess-intent-eval
-description: Evaluation suite for isee-assess-intent.
+description: A/B effectiveness eval for isee-assess-intent on a lightweight-startup fixture.
 skill: isee-assess-intent
 version: "1.0"
 config:
   trials_per_task: 1
-  timeout_seconds: 300
+  timeout_seconds: 600
   parallel: false
   executor: copilot-sdk
   model: claude-sonnet-4.6
 metrics:
   - name: task_completion
     weight: 1.0
-    threshold: 0.8
-    description: Did the skill complete the assigned task?
+    threshold: 0.7
+    description: Did the skill produce a structurally complete, well-grounded intent assessment?
 graders:
-  - type: code
-    name: has_output
-    config:
-      assertions:
-        - "len(output) > 0"
+  # Structural: required headings and vocabulary (case-insensitive)
   - type: text
-    name: relevant_content
+    name: required_structure
+    weight: 2.0
     config:
       regex_match:
-        - "(?i)(explain|describe|analyze|implement)"
+        - "(?i)intent layer assessment"
+        - "(?i)intent levels"
+        - "(?i)upstream context"
+        - "(?i)breadth"
+        - "(?i)depth"
+        - "(?i)coherence"
+        - "(?i)(present|absent|unknown)"
+
+  # Grounding: must cite README from the fixture
+  - type: text
+    name: cites_readme
+    weight: 1.5
+    config:
+      contains:
+        - "README"
+
+  # Substantive: must mention all 5 intent levels by name
+  - type: text
+    name: covers_all_five_levels
+    weight: 1.5
+    config:
+      regex_match:
+        - "(?i)organizational"
+        - "(?i)business"
+        - "(?i)product"
+        - "(?i)architecture"
+        - "(?i)platform"
+
+  # Negative: detect actual hallucination phrases, not legitimate recommendations.
+  # "Found" / "I see" / "exists" + fabricated filename = fabrication.
+  # Mentioning ADR / copilot-instructions in a recommendation = legitimate.
+  - type: text
+    name: no_fabrication
+    weight: 1.0
+    config:
+      regex_not_match:
+        - "(?i)(found|exists|contains|includes|I see)\\s.{0,40}(ADR|copilot-instructions\\.md|CODEOWNERS|\\.mcp\\.json)"
+
+  # Semantic correctness via LLM judge — disabled for A/B spike (timed out at default)
+  # Re-enable in PR 2 with proper continue_session config.
+  # - type: prompt
+  #   name: assessment_quality
+  #   weight: 2.0
+  #   config:
+  #     model: claude-sonnet-4.6
+  #     prompt: |
+  #       (see git history)
+
 tasks:
   - "tasks/*.yaml"
+

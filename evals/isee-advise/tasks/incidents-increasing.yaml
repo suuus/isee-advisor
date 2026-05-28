@@ -1,0 +1,21 @@
+id: advise-incidents-increasing
+name: Advise on increasing incidents despite daily shipping
+description: |
+  A substantive ISEE advisory question: team ships daily but production incidents are increasing.
+  The advisor should frame this through ISEE layers, identify Evidence (feedback loops) and
+  possibly Structure (guardrails) as the primary gaps, and recommend concrete next steps.
+  Should NOT just list all four layers equally — should diagnose and prioritize.
+tags:
+  - substantive-question
+  - incidents
+  - evidence-gap
+  - happy-path
+inputs:
+  prompt: |
+    We have 3 teams shipping daily but production incidents are increasing. What ISEE layer
+    should we focus on, and what are the most important next steps?
+expected:
+  output_contains:
+    - "Evidence"
+  outcomes:
+    - type: task_completed

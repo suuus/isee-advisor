@@ -1,0 +1,32 @@
+id: structure-contradictory-intent
+name: Detect missing guardrails in contradictory-intent repo
+description: |
+  The README claims "reliability is top priority" and "SOC2-aligned" but the CI only runs
+  `npm run build` (no tests, no linting, no coverage), the Terraform has no resource limits,
+  no autoscaling, no monitoring, no SECURITY.md, no security scanning. The agent should flag
+  Structure as Weak/Absent for most dimensions and note the coherence gap with stated priorities.
+tags:
+  - contradictory-intent
+  - missing-guardrails
+  - negative-case
+inputs:
+  prompt: |
+    Assess the Structure layer of the repository in the current working directory using the
+    ISEE framework. Use the Standard profile.
+
+    Scan for all structure signals: CI gates, tests, coverage thresholds, security scanning,
+    policy-as-code, resource limits in infrastructure, MCP tool scoping. Score each dimension
+    Present/Absent/Unknown. Note any gaps between stated priorities (README) and actual
+    structural enforcement. Emit the structured output per your output template.
+
+    Do not ask clarifying questions — proceed with what you can discover.
+  files:
+    - path: contradictory-intent/README.md
+    - path: contradictory-intent/.github/workflows/ci.yml
+    - path: contradictory-intent/infra/main.tf
+    - path: contradictory-intent/package.json
+expected:
+  output_contains:
+    - "Structure"
+  outcomes:
+    - type: task_completed

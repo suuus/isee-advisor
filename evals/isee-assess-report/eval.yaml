@@ -1,28 +1,61 @@
 name: isee-assess-report-eval
-description: Evaluation suite for isee-assess-report.
+description: Real eval for isee-assess-report — synthesize pre-baked findings into structured report.
 skill: isee-assess-report
 version: "1.0"
 config:
   trials_per_task: 1
-  timeout_seconds: 300
+  timeout_seconds: 600
   parallel: false
   executor: copilot-sdk
   model: claude-sonnet-4.6
 metrics:
   - name: task_completion
     weight: 1.0
-    threshold: 0.8
-    description: Did the skill complete the assigned task?
+    threshold: 0.7
+    description: Did the skill produce a complete, structured ISEE report from the findings?
 graders:
-  - type: code
-    name: has_output
-    config:
-      assertions:
-        - "len(output) > 0"
   - type: text
-    name: relevant_content
+    name: required_structure
+    weight: 2.0
     config:
       regex_match:
-        - "(?i)(explain|describe|analyze|implement)"
+        - "(?i)isee (assessment )?report"
+        - "(?i)(intent|structure|execution|evidence)"
+        - "(?i)(🟢|🟡|🔴|strong|developing|weak)"
+        - "(?i)recommendation"
+        - "(?i)(summary|aggregate|overall)"
+
+  - type: text
+    name: cites_fixture
+    weight: 1.5
+    config:
+      regex_match:
+        - "(?i)finding(s)?"
+
+  - type: text
+    name: covers_all_layers
+    weight: 2.0
+    config:
+      regex_match:
+        - "(?i)intent"
+        - "(?i)structure"
+        - "(?i)execution"
+        - "(?i)evidence"
+
+  - type: text
+    name: includes_recommendations
+    weight: 1.5
+    config:
+      regex_match:
+        - "(?i)(copilot-instructions|mcp|monitoring)"
+        - "(?i)(next step|recommend|action)"
+
+  - type: text
+    name: no_fabrication
+    weight: 1.0
+    config:
+      regex_not_match:
+        - "(?i)(found|exists|contains|I see)\\s.{0,40}(agents layer|phase 5|agent assessment)"
+
 tasks:
   - "tasks/*.yaml"

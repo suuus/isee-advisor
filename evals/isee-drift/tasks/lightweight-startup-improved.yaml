@@ -1,0 +1,35 @@
+id: drift-lightweight-improved
+name: Detect improvement — lightweight-startup gained copilot-instructions.md
+description: |
+  Prior baseline (.isee-prior-report.md in lightweight-startup): no copilot-instructions.md,
+  Intent scored 🟡 Developing. Current state (lightweight-startup-improved): copilot-instructions.md
+  added with priorities and decision criteria. The agent should detect ✅ Improved for Intent
+  and note the specific file added. Score should show 🟡→🟢 or 🟡→🟡 (improved within band).
+tags:
+  - drift-improved
+  - intent-improvement
+  - copilot-instructions
+inputs:
+  prompt: |
+    Detect ISEE drift for this repository. A prior assessment baseline is in
+    lightweight-startup/.isee-prior-report.md. The current repository state is in
+    lightweight-startup-improved/.
+
+    Compare the current state against the prior baseline:
+    1. For each prior finding, determine: ✅ Improved · ✅ Maintained · ⚠️ Regressed · 🆕 New · ➖ Removed
+    2. Compare layer scores prior → current
+    3. Call out what changed specifically (file added/removed/modified)
+    4. Generate a drift report per your output template
+
+    Do not ask clarifying questions — proceed with the files provided.
+  files:
+    - path: lightweight-startup/.isee-prior-report.md
+    - path: lightweight-startup-improved/README.md
+    - path: lightweight-startup-improved/package.json
+    - path: lightweight-startup-improved/.github/ci.yml
+    - path: lightweight-startup-improved/.github/copilot-instructions.md
+expected:
+  output_contains:
+    - "Improved"
+  outcomes:
+    - type: task_completed

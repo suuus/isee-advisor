@@ -1,0 +1,37 @@
+id: drift-standard-regressed
+name: Detect regression — standard-team lost deploy.yml (smoke test gone)
+description: |
+  Prior baseline (.isee-prior-report.md): deploy.yml with smoke test, Evidence scored 🟢 Strong.
+  Current state (standard-team-regressed): deploy.yml removed. The agent should detect
+  ⚠️ Regressed for Evidence layer and specifically call out the missing deploy smoke test.
+  Score should show 🟢→🟡 for Evidence.
+tags:
+  - drift-regressed
+  - evidence-regression
+  - deploy-removed
+inputs:
+  prompt: |
+    Detect ISEE drift for this repository. A prior assessment baseline is in
+    standard-team-regressed/.isee-prior-report.md. The current repository state is in
+    the standard-team-regressed/ fixture.
+
+    Compare the current state against the prior baseline:
+    1. For each prior finding, determine: ✅ Improved · ✅ Maintained · ⚠️ Regressed · 🆕 New · ➖ Removed
+    2. Compare layer scores prior → current — look specifically at Evidence layer
+    3. Call out what is missing compared to the prior baseline
+    4. Generate a drift report per your output template
+
+    Do not ask clarifying questions — proceed with the files provided.
+  files:
+    - path: standard-team-regressed/.isee-prior-report.md
+    - path: standard-team-regressed/README.md
+    - path: standard-team-regressed/.github/workflows/ci.yml
+    - path: standard-team-regressed/.github/CODEOWNERS
+    - path: standard-team-regressed/.github/pull_request_template.md
+    - path: standard-team-regressed/.github/copilot-instructions.md
+    - path: standard-team-regressed/CHANGELOG.md
+expected:
+  output_contains:
+    - "Regressed"
+  outcomes:
+    - type: task_completed

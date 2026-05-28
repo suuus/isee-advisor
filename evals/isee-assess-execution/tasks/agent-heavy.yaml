@@ -1,0 +1,36 @@
+id: execution-agent-heavy
+name: Assess execution in an agent-heavy repo
+description: |
+  Multi-agent system: triage and reviewer agents with defined roles, escalation paths in
+  copilot-instructions.md, skills that agents invoke. The agent should assess agents as
+  execution cells — each agent has a defined scope and coordination pattern. Score Execution
+  as Developing-to-Strong, note cross-agent coordination rules as a positive signal.
+tags:
+  - agent-heavy
+  - multi-agent
+  - execution-cells
+inputs:
+  prompt: |
+    Assess the Execution layer of the repository in the current working directory using the
+    ISEE framework. Use the Standard profile.
+
+    This repo has agent definitions — treat each agent as an execution cell. Scan for:
+    CODEOWNERS, PR templates, agent role definitions (.github/agents/), skill definitions
+    (.github/skills/), cross-agent coordination rules (.github/copilot-instructions.md),
+    and escalation paths. Score each dimension Present/Absent/Unknown with confidence and citation.
+    Emit the structured output per your output template.
+
+    Do not ask clarifying questions — proceed with what you can discover.
+  files:
+    - path: agent-heavy/README.md
+    - path: agent-heavy/.github/agents/triage.agent.md
+    - path: agent-heavy/.github/agents/reviewer.agent.md
+    - path: agent-heavy/.github/copilot-instructions.md
+    - path: agent-heavy/.github/skills/triage-route/SKILL.md
+    - path: agent-heavy/.github/skills/security-check/SKILL.md
+    - path: agent-heavy/.mcp.json
+expected:
+  output_contains:
+    - "Execution"
+  outcomes:
+    - type: task_completed

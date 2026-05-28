@@ -1,0 +1,32 @@
+name: Agent Eval
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 6 * * 1"  # Weekly Monday 6am
+
+jobs:
+  eval-triage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run triage agent eval
+        run: waza run triage-agent
+      - name: Upload eval results
+        uses: actions/upload-artifact@v4
+        with:
+          name: triage-eval-results
+          path: evals/.baseline/
+
+  eval-reviewer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run reviewer agent eval
+        run: waza run reviewer-agent
+      - name: Upload eval results
+        uses: actions/upload-artifact@v4
+        with:
+          name: reviewer-eval-results
+          path: evals/.baseline/

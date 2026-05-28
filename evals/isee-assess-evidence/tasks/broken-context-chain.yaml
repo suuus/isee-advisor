@@ -1,0 +1,32 @@
+id: evidence-broken-context-chain
+name: Detect broken context chain in evidence (external refs that 404)
+description: |
+  The README references Confluence and Notion URLs with invalid TLDs. The agent should
+  NOT mark these as Absent — it should mark them as Unknown and flag "context chain broken"
+  for each unreachable reference. CI is present and functional. The key test is that the
+  agent distinguishes Unknown from Absent when external sources are referenced but unreachable.
+tags:
+  - broken-context-chain
+  - unknown-not-absent
+  - negative-case
+inputs:
+  prompt: |
+    Assess the Evidence layer of the repository in the current working directory using the
+    ISEE framework. Use the Standard profile.
+
+    Scan for CI reporting, monitoring/alerting, CHANGELOG, deploy feedback loops, and external
+    dashboard or runbook references. For any external URLs you encounter, note whether they
+    are reachable or not — if unreachable, mark as Unknown (not Absent) and flag as a
+    "context chain broken" finding. Emit the structured output per your output template.
+
+    Do not ask clarifying questions — proceed with what you can discover.
+  files:
+    - path: broken-context-chain/README.md
+    - path: broken-context-chain/.github/copilot-instructions.md
+    - path: broken-context-chain/.github/workflows/ci.yml
+    - path: broken-context-chain/package.json
+expected:
+  output_contains:
+    - "Evidence"
+  outcomes:
+    - type: task_completed

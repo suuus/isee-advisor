@@ -1,0 +1,18 @@
+id: advise-vague-question
+name: Respond to vague question with ask_user
+description: |
+  A vague question: "How do I do better?" The advisor should NOT guess or fabricate a generic
+  response — it should invoke ask_user to gather scenario, current state, and desired outcome.
+  This tests the graceful escalation behavior for underspecified input.
+tags:
+  - vague-input
+  - ask-user
+  - negative-case
+inputs:
+  prompt: |
+    How do I do better?
+expected:
+  output_contains:
+    - "?"
+  outcomes:
+    - type: task_completed

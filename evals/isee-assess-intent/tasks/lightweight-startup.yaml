@@ -1,0 +1,32 @@
+id: lightweight-startup
+name: Assess intent in a lightweight-startup repo
+description: |
+  Standard lightweight-team assessment scenario. The fixture has clear intent in the README
+  but no explicit copilot-instructions, no docs/, no ADRs, no CODEOWNERS. The agent should
+  find 2-3 intent levels Present, mark Architecture and Platform Absent, flag upstream
+  context isolation as Medium/High, and recommend a concrete next step.
+tags:
+  - basic
+  - happy-path
+  - lightweight-profile
+inputs:
+  prompt: |
+    Assess the Intent layer of the repository in the current working directory using the
+    ISEE framework. Use the Lightweight profile (3-person startup).
+
+    Apply your full procedure: scan the files listed in your rubric, detect intent signals,
+    map the 5 intent levels (organizational, business, product, architecture, platform),
+    compute Breadth/Depth/Coherence, follow the upstream context chain, and emit the
+    structured output per your output template.
+
+    Do not ask clarifying questions — the profile is Lightweight, proceed with what you can
+    discover.
+  files:
+    - path: lightweight-startup/README.md
+    - path: lightweight-startup/package.json
+    - path: lightweight-startup/.github/ci.yml
+expected:
+  output_contains:
+    - "Intent Layer Assessment"
+  outcomes:
+    - type: task_completed

@@ -1,0 +1,12 @@
+# HealthData CODEOWNERS — compliance-sensitive paths require extra reviewers
+* @healthdata/engineering
+
+# PHI-touching services require security review
+/src/phi/               @healthdata/engineering @healthdata/security @healthdata/risk
+/src/audit/             @healthdata/security
+/infra/                 @healthdata/platform @healthdata/security
+
+# Policy and compliance docs require Legal sign-off
+/docs/compliance/       @healthdata/legal @healthdata/security
+/docs/policy/           @healthdata/legal
+/SECURITY.md            @healthdata/security @healthdata/legal
