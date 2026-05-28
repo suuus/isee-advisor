@@ -6,13 +6,13 @@
   },
   "metadata": {
     "description": "ISEE Advisor — Assess your team's ISEE maturity, get contextual advice, and detect drift. Built on the Agentile operating model for AI-native engineering teams.",
-    "version": "0.1.0"
+    "version": "0.3.0"
   },
   "plugins": [
     {
       "name": "isee-advisor",
       "description": "ISEE framework advisor for GitHub Copilot. Scan your repo and score maturity across Intent, Structure, Execution, and Evidence layers. Get actionable recommendations, contextual advice, and track drift over time.",
-      "version": "0.1.0",
+      "version": "0.3.0",
       "source": "."
     }
   ]
