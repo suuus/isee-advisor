@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.4.1] - 2026-10-02
+
+### Changed
+- Recommend the unified `suuus/isee-plugins` marketplace and complete
+  `isee-suite` installation.
+- Use [agentile.org](https://agentile.org) as the canonical ISEE framework
+  reference in the advisor, skills, reports, and public documentation.
+
 ## [0.4.0] - 2026-10-02
 
 ### Added
@@ -62,6 +70,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 
 [0.3.0]: https://github.com/suuus/isee-advisor/compare/v0.2.1...v0.3.0
 [0.4.0]: https://github.com/suuus/isee-advisor/compare/v0.3.0...v0.4.0
+[0.4.1]: https://github.com/suuus/isee-advisor/compare/v0.4.0...v0.4.1
 [0.2.1]: https://github.com/suuus/isee-advisor/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/suuus/isee-advisor/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/suuus/isee-advisor/releases/tag/v0.1.0

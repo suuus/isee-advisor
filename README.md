@@ -2,7 +2,7 @@
 
 **Assess, advise, and track your team's alignment to the ISEE framework.**
 
-ISEE (Intent · Structure · Execution · Evidence) is the operating framework for AI-native engineering teams, created by [Suzanne Daniels](https://thesuzannedaniels.substack.com). It answers: *If humans can no longer be in every loop, what structure does speed need?*
+ISEE (Intent · Structure · Execution · Evidence) is the operating framework for AI-native engineering teams, documented at [agentile.org](https://agentile.org). It answers: *If humans can no longer be in every loop, what structure does speed need?*
 
 The ISEE Advisor is a [GitHub Copilot agent](https://docs.github.com/en/copilot) that scans your repo, evaluates how well your team implements each ISEE layer, and provides actionable recommendations. It assesses both informal framework signals and, when present, the machine-readable ADRP, ASRP, ISEE, and AERP protocol chain.
 
@@ -31,13 +31,23 @@ Re-assess after making changes. Compare against your prior assessment to see wha
 
 ## Installation
 
-### GitHub Copilot Plugin
+### Recommended: complete ISEE suite
+
 ```bash
-copilot plugin marketplace add suuus/isee-advisor
-copilot plugin install isee-advisor@isee-advisor
+copilot plugin marketplace add suuus/isee-plugins
+copilot plugin install isee-suite@isee
 ```
 
-### Copy
+The suite includes ISEE Advisor plus ADRP, ASRP, AERP, ISEE integration, and
+the `isee-setup` skill.
+
+To install only the advisor:
+
+```bash
+copilot plugin install isee-advisor@isee
+```
+
+### Manual copy for development
 
 ```bash
 # Clone this repo
@@ -120,14 +130,14 @@ The assessment calibrates expectations based on your team's context:
 
 ## Related
 
-- **[ISEE Framework](https://agentile.com/agents)** — Full framework instructions for agents
+- **[ISEE Framework](https://agentile.org)** — The operating framework for AI-native engineering teams
 - **[Ape Context](https://github.com/suuus/ape-context)** — Set up your context layer (MCP servers, copilot-instructions)
 - **[ADRP](https://github.com/suuus/adrp)** — Durable, machine-readable Intent records
 - **[ASRP](https://github.com/suuus/asrp)** — Durable Structure records and execution manifests
 - **[AERP](https://github.com/suuus/aerp)** — Durable Evidence records and bundles
 - **[ISEE Integration](https://github.com/suuus/isee)** — Preflight, Copilot projection, and Evidence evaluation
 - **[Engineering Beyond Agile](https://thesuzannedaniels.substack.com)** — The 8-part article series behind ISEE
-- **[Agentile](https://agentile.com)** — The operating model for AI-native teams
+- **[ISEE Plugins](https://github.com/suuus/isee-plugins)** — Install the complete Copilot suite
 
 ## License
 
