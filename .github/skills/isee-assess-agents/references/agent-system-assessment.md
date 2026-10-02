@@ -15,14 +15,14 @@ When **2 or more agents** are detected, assess the system as a whole across all 
 ### System Structure
 - Are **guardrails consistent** across agents? (e.g., all agents respect read-only constraints)
 - Are **tool permissions scoped per agent**, not shared broadly?
-- Are **boundaries between agents clear** and non-overlapping?
-- Is there a **coordination pattern**? (orchestrator, pipeline, event-driven, or ad hoc?)
+- Are **ownership, responsibilities, interfaces, dependencies, and boundaries between agents clear**?
+- Does an ASRP record or equivalent make the coordination topology explicit?
 
 ### System Execution
-- Are **responsibilities partitioned without gaps or overlaps**?
-- Are **handoffs between agents defined**? (Agent A finishes → Agent B starts)
-- Is there an **orchestration pattern** visible? (agent.md with phased workflow, skill chains)
-- Do agents **share context** appropriately? (not duplicating work, not missing context)
+- Do agents execute through approved entry points and preserve governing bindings?
+- Are required gates and approvals enforced before consequential actions?
+- Do handoffs use Structure-defined interfaces and durable artifacts?
+- Is actual behavior consistent with the declared topology and autonomy boundaries?
 
 ### System Evidence (upstream flow across agents)
 - Does evidence from **one agent flow to another's context**? (e.g., assessment findings available to advise mode)

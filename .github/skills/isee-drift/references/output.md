@@ -42,6 +42,22 @@ When the drift analysis is complete, produce this report:
 
 ---
 
+## Protocol Conformance Drift
+
+| Capability | Prior | Current | Change |
+|------------|-------|---------|--------|
+| ADRP validity/lifecycle | {state} | {state} | {change} |
+| ASRP validity/lifecycle | {state} | {state} | {change} |
+| Intent → Structure binding | {state} | {state} | {change} |
+| Execution manifest/consumption | {state} | {state} | {change} |
+| AERP validity and bindings | {state} | {state} | {change} |
+| Required Evidence | {state} | {state} | {change} |
+| ISEE loop | {state} | {state} | {change} |
+
+Flag unexplained fingerprint changes, stale/superseded records, binding mismatches, bypassed gates, and Evidence that no longer satisfies the manifest.
+
+---
+
 ## Top Recommendations
 
 {3 prioritized actions based on drift findings}

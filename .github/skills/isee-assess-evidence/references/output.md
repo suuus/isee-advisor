@@ -18,6 +18,14 @@ When the assessment is complete, produce this structure:
 - Evidence **consumed upstream**: [what evidence visibly informs decisions?]
 - Evidence **closing the loop**: [incidents → backlog? metrics → priorities? agent findings → config changes?]
 
+### Evidence Protocol Conformance
+- **AERP**: Exact / Reference / Absent / Invalid / Unknown
+- **Intent bindings**: [exact / partial / mismatched / unknown]
+- **Structure bindings**: [exact / partial / mismatched / unknown]
+- **Manifest requirements**: [satisfied / partial / failed / unknown]
+- **Provenance and validity**: [attributable and current / partial / invalid / unknown]
+- **Record and artifact integrity**: [verified / failed / unknown]
+
 ### Summary
 - Signals found: X present, Y absent, Z unknown
 - Confidence: [overall confidence level]

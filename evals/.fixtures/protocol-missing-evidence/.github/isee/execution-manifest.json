@@ -1,0 +1,100 @@
+{
+  "schema_version": "isee-execution-manifest/v1",
+  "manifest_id": "000f3b22-72a9-543d-98d5-c9d5cbf7824e",
+  "compiled_at": "2026-10-02T12:30:00Z",
+  "scope": "production deployments",
+  "intent_bindings": [
+    {
+      "decision_id": "ADR-SECURITY-GATE",
+      "record_id": "849535a2-fb8d-4a59-a9ea-d01ff9b7b460",
+      "record_version": 1,
+      "record_fingerprint": "sha256:33a1f34800953029337e6f54aaa7263cd205088b7d96be223b81d7cdfe4a76fb"
+    }
+  ],
+  "structure_bindings": [
+    {
+      "structure_id": "STR-PRODUCTION-DEPLOYMENT",
+      "record_id": "5a55e292-2650-460d-901d-fc38af809e21",
+      "record_version": 1,
+      "record_fingerprint": "sha256:a04a04655f79157e7f053c54b61e0fbd1032cd4e13608b9b684090661be45fdd"
+    }
+  ],
+  "entry_point": {
+    "entry_point_id": "production-deployment",
+    "name": "Production deployment",
+    "runner": "git-ape",
+    "command": null,
+    "element_refs": [
+      "git-ape"
+    ],
+    "required_gates": [
+      "security-gate"
+    ]
+  },
+  "elements": [
+    {
+      "element_id": "git-ape",
+      "element_type": "agent",
+      "name": "Git-Ape",
+      "description": "Executes the governed Azure deployment workflow.",
+      "owner_refs": [
+        "platform-team"
+      ],
+      "artifact_refs": [],
+      "depends_on": [
+        "security-gate"
+      ],
+      "properties": {
+        "execution_system": "git-ape"
+      }
+    },
+    {
+      "element_id": "security-gate",
+      "element_type": "control-gate",
+      "name": "Blocking security gate",
+      "description": "Prevents deployment while blocking security findings remain.",
+      "owner_refs": [
+        "platform-team"
+      ],
+      "artifact_refs": [],
+      "depends_on": [],
+      "properties": {
+        "severity_threshold": "high"
+      }
+    }
+  ],
+  "gates": [
+    {
+      "gate_id": "security-gate",
+      "name": "Security gate",
+      "mode": "blocking",
+      "element_refs": [
+        "security-gate"
+      ],
+      "policy_refs": []
+    }
+  ],
+  "evidence_requirements": [
+    {
+      "requirement_id": "SECURITY-GATE-RESULT",
+      "evidence_type": "assessment",
+      "subject": "security-gate",
+      "required_results": [
+        "passed"
+      ],
+      "artifact_roles": [
+        "report"
+      ],
+      "criteria_refs": [
+        "SECURITY-GATE-01"
+      ],
+      "gate_refs": [
+        "security-gate"
+      ]
+    }
+  ],
+  "artifacts": [],
+  "integrity": {
+    "manifest_fingerprint": "sha256:507c68c7330f2e683c1493c765c17f7d29b33ccc77d4b8cdfdfea7c876957559"
+  }
+}

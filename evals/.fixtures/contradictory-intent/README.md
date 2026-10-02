@@ -1,6 +1,6 @@
 # OrderFlow
 
-Order management system for e-commerce. 
+Order management system for e-commerce.
 
 ## Our commitment
 

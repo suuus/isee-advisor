@@ -35,6 +35,25 @@ This module is loaded on-demand by `SKILL.md` when generating the final assessme
 
 **Overall maturity:** {narrative summary — 2-3 sentences}
 
+### Protocol Conformance
+
+Protocol conformance increases confidence but is not included as a penalty merely because a team uses equivalent non-profile artifacts.
+
+| Capability | Status | Evidence |
+|------------|--------|----------|
+| ADRP records valid | Yes / No / Absent / Unknown | {citation or validation result} |
+| ASRP records valid | Yes / No / Absent / Unknown | {citation or validation result} |
+| Intent → Structure binding | Exact / Reference / Absent / Invalid / Unknown | {IDs and fingerprints} |
+| Execution manifest | Valid / Missing / Invalid / Unknown | {manifest ID and fingerprint} |
+| Manifest consumed by execution | Exact / Reference / Absent / Invalid / Unknown | {run or workflow citation} |
+| AERP Evidence valid | Yes / No / Absent / Unknown | {citation or validation result} |
+| Evidence → Intent binding | Exact / Reference / Absent / Invalid / Unknown | {IDs and fingerprints} |
+| Evidence → Structure binding | Exact / Reference / Absent / Invalid / Unknown | {IDs and fingerprints} |
+| Required Evidence satisfied | Complete / Partial / Failed / Unknown | {requirements and matching records} |
+| ISEE loop | Closed / Partial / Open / Unknown | {visible upstream consumption} |
+
+**Protocol summary:** {Exact chain / Partial chain / Reference-only / Invalid chain / No protocol artifacts / Unknown}
+
 ---
 
 ## Intent Layer {score emoji}
@@ -61,6 +80,10 @@ This module is loaded on-demand by `SKILL.md` when generating the final assessme
 - **Depth**: [Traceable / Partially traceable / Fragmented]
 - **Coherence**: [Aligned / Mixed / Contradictory]
 
+### Intent Protocol Conformance
+- ADRP: [Exact / Reference / Absent / Invalid / Unknown]
+- Applicable records, authority, autonomy, lifecycle, and integrity: [summary]
+
 ---
 
 ## Structure Layer {score emoji}
@@ -70,6 +93,10 @@ This module is loaded on-demand by `SKILL.md` when generating the final assessme
 ### Upstream Structural Inheritance
 - [shared CI, inherited configs, agent packages from distribution systems, compliance policy refs]
 
+### Structure Protocol Conformance
+- ASRP: [Exact / Reference / Absent / Invalid / Unknown]
+- Intent bindings, topology, execution contract, Evidence obligations, and integrity: [summary]
+
 ---
 
 ## Execution Layer {score emoji}
@@ -78,6 +105,10 @@ This module is loaded on-demand by `SKILL.md` when generating the final assessme
 
 ### Work Item Traceability
 - [Connected / Partial / None — with evidence]
+
+### Execution Protocol Conformance
+- Manifest consumption: [Exact / Reference / Absent / Invalid / Unknown]
+- Retained bindings, entry point, gates, approvals, and Evidence handoff: [summary]
 
 ---
 
@@ -89,6 +120,10 @@ This module is loaded on-demand by `SKILL.md` when generating the final assessme
 - Evidence **produced**: [sources]
 - Evidence **consumed upstream**: [what informs decisions]
 - **Feedback loop**: [Closed / Partial / Open]
+
+### Evidence Protocol Conformance
+- AERP: [Exact / Reference / Absent / Invalid / Unknown]
+- Intent/Structure bindings, requirement matching, provenance, validity, and integrity: [summary]
 
 ---
 
@@ -145,13 +180,29 @@ Prioritized by impact and effort:
 2. **{title}** — {description}. *Effort: {Low/Medium/High}. Impact: {description}.*
 3. **{title}** — {description}. *Effort: {Low/Medium/High}. Impact: {description}.*
 
+### Recommendation routing
+
+Use the smallest project that addresses the demonstrated gap:
+
+- **Ape Context** — repository context, MCP discovery, and Copilot instructions.
+- **ADRP** — consequential Intent, authority, trade-offs, autonomy, and expected Evidence.
+- **ASRP** — ownership, topology, interfaces, boundaries, gates, and execution contracts.
+- **AERP** — durable observations, assessments, approvals, outcomes, drift, and integrity.
+- **ISEE integration** — ordinary Copilot projection, preflight orchestration, and Evidence evaluation.
+
+Do not recommend adopting a profile merely to improve the assessment score. Equivalent, well-governed artifacts remain valid ISEE implementations.
+
 ---
 
 ## Next Steps
 
 - Re-run this assessment after implementing recommendations: `/isee-advisor drift`
 - For deeper framework context: https://agentile.com/agents
-- To set up your context layer (MCP servers, copilot-instructions): https://github.com/suuus/ape-context
+- Context and Copilot instructions: https://github.com/suuus/ape-context
+- Intent records: https://github.com/suuus/adrp
+- Structure records and execution manifests: https://github.com/suuus/asrp
+- Evidence records: https://github.com/suuus/aerp
+- Copilot and agentic-flow integration: https://github.com/suuus/isee
 - Full article series: https://thesuzannedaniels.substack.com
 
 ---
@@ -179,9 +230,9 @@ Use ask_user:
 If yes, write the report to `.github/isee-report.md`.
 If no, the report remains in the conversation only.
 
-### Suggest Ape Context (if relevant)
+### Offer the relevant setup path
 
-If the assessment found gaps in Structure (no `.mcp.json`, no tool scoping) or Intent (no copilot-instructions.md):
+Only offer a project when a finding maps directly to its responsibility. For repository context gaps:
 
 ```
 Use ask_user:
@@ -197,3 +248,5 @@ Use ask_user:
 ```
 
 Only ask this if gaps are relevant. Never push it on a team with strong structure.
+
+For ADRP, ASRP, AERP, or ISEE integration, explain the relevant project and ask whether the user wants a separate setup task. Assessment remains read-only and must not configure these tools directly.

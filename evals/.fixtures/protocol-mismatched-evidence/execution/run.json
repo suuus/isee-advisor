@@ -1,0 +1,31 @@
+{
+  "run_id": "run-isee-001",
+  "entry_point": "production-deployment",
+  "manifest_id": "000f3b22-72a9-543d-98d5-c9d5cbf7824e",
+  "manifest_fingerprint": "sha256:507c68c7330f2e683c1493c765c17f7d29b33ccc77d4b8cdfdfea7c876957559",
+  "intent_bindings": [
+    {
+      "decision_id": "ADR-SECURITY-GATE",
+      "record_fingerprint": "sha256:33a1f34800953029337e6f54aaa7263cd205088b7d96be223b81d7cdfe4a76fb"
+    }
+  ],
+  "structure_bindings": [
+    {
+      "structure_id": "STR-PRODUCTION-DEPLOYMENT",
+      "record_fingerprint": "sha256:a04a04655f79157e7f053c54b61e0fbd1032cd4e13608b9b684090661be45fdd"
+    }
+  ],
+  "gate_results": [
+    {
+      "gate_id": "security-gate",
+      "mode": "blocking",
+      "result": "passed",
+      "evidence": "../evidence/security-gate.aerp.json"
+    }
+  ],
+  "approval": {
+    "approved_by": "Security Council",
+    "approved_at": "2026-10-02T12:35:00Z"
+  },
+  "outcome": "succeeded"
+}

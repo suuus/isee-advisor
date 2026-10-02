@@ -11,6 +11,7 @@ This module is loaded on-demand by `SKILL.md` when assessing individual agents.
 5. `.github/workflows/*.yml` — agent-triggered automation, CI integration with agents
 6. Agent output artifacts — patterns where agents write findings, reports, or logs
 7. Agent packaging/distribution manifests — package manifests, lockfiles, dependency declarations, installed module directories, or policy files that govern agent packages
+8. `.github/isee/execution-manifest.json` and AERP records — governed agent entry points, bindings, gate outcomes, and durable Evidence
 
 ## Remote distribution as a signal
 
@@ -24,8 +25,8 @@ When agent context comes from a packaging or distribution system (rather than be
 
 **What these systems typically carry for ISEE:**
 - **Intent**: Skill/agent descriptions that define purpose and when to use
-- **Structure**: Always-loaded instructions (guardrails), organizational policy enforcement, tool scoping declarations
-- **Execution**: Agent type/mode definitions, compatibility requirements, dependency graphs between agent packages
+- **Structure**: Always-loaded instructions, ownership, responsibilities, interfaces, boundaries, guardrails, organizational policy enforcement, and tool scoping
+- **Execution**: Actual invocation through approved entry points, manifest consumption, gate enforcement, approvals, and handoffs
 - **Evidence**: ⚠️ Typically a gap — most agent packaging systems do not natively define what evidence an agent should produce. This is where ISEE adds unique value.
 
 **Key question:** When agent context comes from a remote source, can you trace it back to its origin? Is it versioned? Is there governance over what gets installed? Does the upstream source carry intent, or just code?
@@ -56,6 +57,8 @@ When agent context comes from a packaging or distribution system (rather than be
 - Error handling rules (what to do when uncertain, when to escalate)
 - Operating rules section in agent definition
 - Skill-level constraints (each skill has scoped responsibilities)
+- Explicit responsibility, interface, dependency, and trust-boundary declarations
+- Exact ASRP Structure binding when the protocol is used
 
 **ABSENT:**
 - All tools available to all agents (no scoping)
@@ -64,22 +67,22 @@ When agent context comes from a packaging or distribution system (rather than be
 - No distinction between read and write operations
 - Agent can modify anything without approval
 
-### Agent Execution (are responsibilities well-distributed?)
+### Agent Execution (does the agent operate within the approved Structure?)
 
 **PRESENT:**
-- Clear division of responsibility between agents (no overlapping domains)
-- Handoff points defined (when Agent A should invoke/defer to Agent B)
-- Scoped file/domain access per agent
-- Workflow patterns documented (phased execution, dependency chains)
-- Skills map to specific responsibilities (not catch-all)
-- Escalation paths to humans defined
+- Invoked through an approved entry point or documented workflow
+- Consumes and retains the governing Intent/Structure/manifest references
+- Required gates and approvals run before consequential actions
+- Handoffs occur through defined interfaces and durable artifacts
+- Execution stays within Structure-defined responsibility and access boundaries
+- Escalation paths to humans are used when autonomy boundaries require them
 
 **ABSENT:**
-- Multiple agents with overlapping responsibilities
-- No defined handoff patterns
-- Agents operating in isolation (no awareness of other agents)
-- Monolithic agent doing everything
-- No human escalation path
+- Bypasses an approved entry point, required gate, or approval
+- Loses or mutates governing bindings during execution
+- Performs responsibilities assigned to another agent or owner
+- Handoffs rely on transient conversation rather than the defined interface
+- Acts outside autonomy boundaries without human escalation
 
 ### Agent Evidence (does the agent produce reviewable output that flows upstream?)
 
@@ -94,6 +97,7 @@ When agent context comes from a packaging or distribution system (rather than be
 - **Evidence → upstream decisions**: Agent-produced evidence informs team decisions (assessment findings → priority changes, drift reports → backlog items)
 - **Feedback loop**: Evidence from agent output flows back to agent configuration (reports inform instruction updates, findings lead to guardrail changes)
 - **Verify-after-action patterns**: Agent instructions include "check your work", "verify the output", "confirm before proceeding"
+- **AERP Evidence**: Agent output is captured as attributable Evidence bound to exact Intent and Structure when the protocol is used
 
 **ABSENT:**
 - Agent produces output but doesn't cite sources

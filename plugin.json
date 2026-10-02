@@ -1,7 +1,7 @@
 {
   "name": "isee-advisor",
   "description": "ISEE framework advisor for GitHub Copilot. Assess your team's ISEE maturity, get contextual advice, and detect drift — built on the Agentile operating model by Suzanne Daniels.",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "author": {
     "name": "Suzanne Daniels",
     "url": "https://agentile.com"
@@ -17,7 +17,11 @@
     "copilot-agent",
     "engineering-leadership",
     "platform-engineering",
-    "operating-model"
+    "operating-model",
+    "adrp",
+    "asrp",
+    "aerp",
+    "governance"
   ],
   "agents": ".github/agents/",
   "skills": ".github/skills/"

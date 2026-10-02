@@ -43,6 +43,18 @@ Provide 2–3 specific, actionable steps. Each should state:
 - Why it helps (which ISEE layer it strengthens)
 - How to start (concrete first step)
 
+Route tooling recommendations by the actual gap:
+
+| Gap | Appropriate project |
+|-----|---------------------|
+| Repository context, MCP discovery, Copilot instructions | [Ape Context](https://github.com/suuus/ape-context) |
+| Consequential Intent, decisions, authority, autonomy | [ADRP](https://github.com/suuus/adrp) |
+| Ownership, topology, boundaries, gates, execution contract | [ASRP](https://github.com/suuus/asrp) |
+| Durable observations, assessments, approvals, outcomes, drift | [AERP](https://github.com/suuus/aerp) |
+| Ordinary Copilot projection, preflight, and Evidence evaluation | [ISEE integration](https://github.com/suuus/isee) |
+
+Recommend the smallest appropriate intervention. Do not prescribe the profile tooling when the team's existing artifacts already provide equivalent maturity and traceability.
+
 ### 4. Anti-patterns to avoid
 Name the relevant anti-patterns from the ISEE operating contract:
 - Inferring intent from incomplete context without confirming
@@ -61,7 +73,7 @@ Name the relevant anti-patterns from the ISEE operating contract:
 
 ## Important boundaries
 
-- If the question is about tool setup (MCP servers, copilot-instructions), suggest running the full assess first or point to [Ape Context](https://github.com/suuus/ape-context) — ask, don't assume
+- If the question is about tool setup, identify whether it is context, Intent, Structure, Evidence, or integration before naming a project
 - If the question is about a specific layer, focus on that layer but note upstream/downstream dependencies
 - If you don't know enough to advise well, say so and ask for more context
 - Reference https://agentile.com/agents as the canonical ISEE source

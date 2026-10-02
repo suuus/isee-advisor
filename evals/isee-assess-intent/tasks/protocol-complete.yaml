@@ -1,0 +1,26 @@
+id: protocol-complete-intent
+name: Assess canonical ADRP Intent
+description: |
+  The fixture contains ratified ADRP Intent in a complete ISEE protocol chain.
+  The assessment should recognize strong framework Intent and report exact
+  ADRP conformance without treating protocol adoption as the maturity score.
+tags:
+  - protocol
+  - adrp
+  - exact-bindings
+inputs:
+  prompt: |
+    Assess the Intent layer using the Standard profile. Inspect both ordinary
+    framework signals and ADRP protocol conformance. Cite the applicable
+    decision record, lifecycle, authority, autonomy boundaries, expected
+    Evidence, and fingerprint. Do not ask clarifying questions.
+  files:
+    - path: protocol-complete/README.md
+    - path: protocol-complete/.github/decisions/ADR-SECURITY-GATE.ratified.json
+    - path: protocol-complete/.github/isee/execution-manifest.json
+expected:
+  output_contains:
+    - "Intent Protocol Conformance"
+    - "ADR-SECURITY-GATE"
+  outcomes:
+    - type: task_completed

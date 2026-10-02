@@ -1,0 +1,84 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate plugin.json
+        run: python3 -c "import json; json.load(open('plugin.json'))"
+
+      - name: Validate marketplace.json
+        run: python3 -c "import json; json.load(open('.github/plugin/marketplace.json'))"
+
+      - name: Check required files exist
+        run: |
+          for file in README.md LICENSE CONTRIBUTING.md CODE_OF_CONDUCT.md SECURITY.md CHANGELOG.md; do
+            if [ ! -f "$file" ]; then
+              echo "::error::Missing required file: $file"
+              exit 1
+            fi
+          done
+
+      - name: Check agent definitions exist
+        run: |
+          if [ -z "$(ls -A .github/agents/*.agent.md 2>/dev/null)" ]; then
+            echo "::error::No agent definitions found in .github/agents/"
+            exit 1
+          fi
+
+      - name: Check skills exist
+        run: |
+          if [ -z "$(ls -A .github/skills/ 2>/dev/null)" ]; then
+            echo "::error::No skills found in .github/skills/"
+            exit 1
+          fi
+
+      - name: Validate agents and skills
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          failures = []
+
+          for path in sorted(Path(".github/agents").glob("*.agent.md")):
+              text = path.read_text(encoding="utf-8")
+              if not text.startswith("---\n"):
+                  failures.append(f"{path}: missing YAML frontmatter")
+              for field in ("name:", "description:"):
+                  if field not in text.split("---", 2)[1]:
+                      failures.append(f"{path}: missing frontmatter field {field[:-1]}")
+
+          for path in sorted(Path(".github/skills").glob("*/SKILL.md")):
+              text = path.read_text(encoding="utf-8")
+              if not text.startswith("---\n"):
+                  failures.append(f"{path}: missing YAML frontmatter")
+                  continue
+              frontmatter = text.split("---", 2)[1]
+              for field in ("name:", "description:"):
+                  if field not in frontmatter:
+                      failures.append(f"{path}: missing frontmatter field {field[:-1]}")
+              if "# " not in text:
+                  failures.append(f"{path}: missing top-level heading")
+
+          if failures:
+              for failure in failures:
+                  print(f"::error::{failure}")
+              raise SystemExit(1)
+          PY
+
+      - name: Lint Markdown
+        uses: DavidAnson/markdownlint-cli2-action@v19
+        with:
+          config: ".markdownlint-cli2.jsonc"

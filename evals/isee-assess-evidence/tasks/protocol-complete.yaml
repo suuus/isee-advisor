@@ -1,0 +1,29 @@
+id: protocol-complete-evidence
+name: Assess exact AERP Evidence chain
+description: |
+  The fixture contains verified AERP Evidence with exact ADRP and ASRP
+  bindings and a successful saved ISEE evaluation.
+tags:
+  - protocol
+  - aerp
+  - closed-loop
+inputs:
+  prompt: |
+    Assess the Evidence layer using the Standard profile. Inspect the AERP
+    record, its Intent and Structure bindings, provenance, artifact integrity,
+    manifest requirement matching, saved evaluation, and visible feedback
+    loop. Do not ask clarifying questions.
+  files:
+    - path: protocol-complete/README.md
+    - path: protocol-complete/CHANGELOG.md
+    - path: protocol-complete/.github/workflows/production-deploy.yml
+    - path: protocol-complete/.github/isee/execution-manifest.json
+    - path: protocol-complete/.github/isee/evaluation.json
+    - path: protocol-complete/evidence/security-gate.aerp.json
+    - path: protocol-complete/evidence/security-gate-report.json
+expected:
+  output_contains:
+    - "Evidence Protocol Conformance"
+    - "SECURITY-GATE-RESULT"
+  outcomes:
+    - type: task_completed

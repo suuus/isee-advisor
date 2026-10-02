@@ -15,6 +15,9 @@ Read these files if they exist:
 7. `README.md` — CI status badges, coverage badges, health indicators
 8. `CHANGELOG.md`, release workflows — does the team produce evidence of what shipped?
 9. References to Sentry, Bugsnag, Application Insights in config or dependencies
+10. `evidence/**/*.json`, `.github/evidence/**/*.json`, deployment evidence directories — AERP records and bundles
+11. `.github/isee/execution-manifest.json` — Evidence requirements to evaluate
+12. `.github/isee/` evaluation outputs or reports from `isee evaluate`
 
 ## Evidence signals
 
@@ -28,6 +31,10 @@ Read these files if they exist:
 - MCP servers for monitoring tools (agents can query observability data)
 - Error tracking integrated (errors flow upstream automatically)
 - Agent instructions that include "verify after action" patterns
+- Valid AERP records with exact ADRP Intent and ASRP Structure bindings
+- Evidence subjects, results, criteria, and artifact roles satisfy manifest requirements
+- Artifact bytes and record fingerprints verify
+- Producer identity, method, timing, environment, and validity are explicit
 
 ### ABSENT
 - CI runs tests but doesn't report results or coverage
@@ -40,6 +47,28 @@ Read these files if they exist:
 - Feedback that stays in dashboards but doesn't flow to decisions
 - No incident → backlog traceability
 - Agent output stays in conversation — never persisted or surfaced to decision-makers
+- AERP Evidence is bound to the right Intent but the wrong Structure, or vice versa
+- Evidence claims success but does not satisfy the manifest's subject, result, criteria, or artifact requirements
+- Evidence artifacts are missing, modified, expired, revoked, or unverifiable
+
+## AERP protocol conformance
+
+Protocol conformance supplements the broader Evidence and feedback-loop assessment.
+
+When AERP records, bundles, or ISEE evaluation outputs exist, assess:
+
+| Check | Exact conformance |
+|-------|-------------------|
+| Schema | `aerp-evidence-record/v1`; read-only validation succeeds when available |
+| Intent binding | Expected ADRP IDs and fingerprints are present |
+| Structure binding | Expected ASRP IDs and fingerprints are present |
+| Claim matching | Evidence type, subject, accepted result, criteria, and artifact roles satisfy the manifest requirement |
+| Provenance | Producer identity, method, invocation, timing, and environment are attributable |
+| Integrity | Record and artifact fingerprints verify; paths do not escape the declared artifact root |
+| Validity | Evidence is current, not revoked, and supersession is explicit |
+| Loop closure | Evidence is evaluated and visibly informs review, backlog, configuration, or a new Intent decision |
+
+Classify AERP conformance as **Exact**, **Reference**, **Absent**, **Invalid**, or **Unknown**. Exact Evidence bindings do not by themselves prove the learning loop is closed.
 
 ### UNKNOWN
 Much of evidence lives outside the repo. If the repo references external evidence systems (monitoring dashboards, incident tools, etc.), attempt to follow those references. If unreachable, record that as a finding — don't ask the user to go retrieve the content.
@@ -72,7 +101,7 @@ Much of evidence lives outside the repo. If the repo references external evidenc
 |---------|-------------|-----------|
 | **Lightweight** | Startup, small team | CI reporting pass/fail + basic error tracking. Feedback loop can be informal. Upstream flow via conversation acceptable. |
 | **Standard** | Established team | Coverage thresholds, monitoring, alerting, deployment verification, changelog. Feedback flows to backlog. Evidence from agents persists. Some upstream traceability. |
-| **Regulated** | Compliance-heavy | Audit-grade evidence trails, mandatory post-incident reviews, compliance reporting, SLA monitoring, change evidence. Full feedback loop traceability. Agent evidence must be auditable and demonstrably inform decisions. |
+| **Regulated** | Compliance-heavy | Audit-grade AERP or equivalent evidence trails, exact Intent/Structure traceability, mandatory post-incident reviews, compliance reporting, SLA monitoring, and demonstrable feedback into decisions. |
 
 ## When signals are weak — ask_user template
 

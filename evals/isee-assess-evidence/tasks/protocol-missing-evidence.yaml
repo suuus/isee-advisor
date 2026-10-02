@@ -1,0 +1,27 @@
+id: protocol-missing-required-evidence
+name: Detect missing manifest Evidence
+description: |
+  The fixture has valid ADRP Intent, ASRP Structure, and an execution manifest,
+  but no AERP Evidence or evaluation result.
+tags:
+  - protocol
+  - negative
+  - missing-evidence
+inputs:
+  prompt: |
+    Assess the Evidence layer using the Regulated profile. The manifest defines
+    required Evidence, but no Evidence record was supplied. Distinguish a valid
+    execution contract from actual proof that its requirement was satisfied.
+    Do not ask clarifying questions.
+  files:
+    - path: protocol-missing-evidence/README.md
+    - path: protocol-missing-evidence/CHANGELOG.md
+    - path: protocol-missing-evidence/.github/workflows/production-deploy.yml
+    - path: protocol-missing-evidence/.github/isee/execution-manifest.json
+expected:
+  output_contains:
+    - "Evidence Protocol Conformance"
+    - "SECURITY-GATE-RESULT"
+    - "Absent"
+  outcomes:
+    - type: task_completed

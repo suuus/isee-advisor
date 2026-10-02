@@ -18,10 +18,24 @@ Use the findings from each assess skill phase:
 
 | Layer | Source phase | Key signals to weigh |
 |-------|-------------|----------------------|
-| Intent | Phase 1 | Intent levels breadth/depth/coherence, upstream context connections |
-| Structure | Phase 2 | MCP scoping, CI gates, branch protection, structural inheritance |
-| Execution | Phase 3 | CODEOWNERS, PR template richness, work item traceability |
-| Evidence | Phase 4 | Feedback loop traceability, monitoring, changelog, upstream flow |
+| Intent | Phase 1 | Intent levels breadth/depth/coherence, authority, autonomy, upstream context |
+| Structure | Phase 2 | Ownership, boundaries, interfaces, constraints, gates, structural inheritance |
+| Execution | Phase 3 | Entry points, gate/approval behavior, durable context, manifest/work-item traceability |
+| Evidence | Phase 4 | Claim quality, provenance, integrity, feedback-loop traceability, monitoring, upstream flow |
+
+## Protocol conformance is not the maturity score
+
+ADRP, ASRP, ISEE manifests, and AERP provide stronger machine-verifiable
+traceability. Score protocol conformance separately as Exact, Reference, Absent,
+Invalid, or Unknown.
+
+- **Absent** profile artifacts do not reduce framework maturity when equivalent
+  practices are demonstrated through other governed artifacts.
+- **Exact** conformance raises confidence in findings but does not compensate
+  for weak outcomes or an open learning loop.
+- **Invalid** claimed conformance is a real gap because consumers may trust a
+  broken fingerprint, lifecycle state, binding, gate, or Evidence result.
+- Never average protocol status into the four layer emojis.
 
 ## Aggregate maturity narrative
 

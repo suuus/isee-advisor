@@ -29,6 +29,7 @@ graders:
         - "(?i)execution"
         - "(?i)evidence"
         - "(?i)(top|key) recommendations?"
+        - "(?i)protocol conformance"
 
   # The orchestrator should track its work — phase todos seeded and updated
   - type: text

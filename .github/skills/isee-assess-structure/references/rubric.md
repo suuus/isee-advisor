@@ -15,6 +15,9 @@ Read these files if they exist:
 7. `.eslintrc`, `.prettierrc`, `tsconfig.json` (strict mode), `Cargo.toml` (deny warnings) — codified quality standards
 8. Azure/AWS budget alerts, resource quotas, rate limiting config
 9. `.npmrc`, `package.json` (engines, overrides), lockfile presence
+10. `.github/structures/**/*.json`, `structures/**/*.json`, `docs/structures/**/*.json` — ASRP records
+11. `.github/isee/execution-manifest.json` — compiled Structure contract for execution
+12. Architecture/API/policy/workflow artifacts referenced by ASRP records
 
 ## Structure signals
 
@@ -27,6 +30,9 @@ Read these files if they exist:
 - Dependency update policies (Dependabot, Renovate)
 - Strict compiler/linter settings (treating warnings as errors)
 - Agent guardrails in copilot-instructions.md ("do not merge", "do not deploy")
+- Explicit actors, ownership, components, responsibilities, interfaces, dependencies, and trust boundaries
+- Effective ASRP records with exact ADRP Intent bindings
+- Compiled execution manifest with selected entry point, dependency-expanded elements, required gates, and Evidence obligations
 
 ### ABSENT
 - `.mcp.json` with all servers at `"tools": ["*"]` (no scoping)
@@ -38,6 +44,28 @@ Read these files if they exist:
 - Copilot instructions with no constraint section
 - No dependency management policy
 - No connection to upstream structural constraints — structure appears entirely local with no organizational inheritance
+- Ownership and component boundaries are inferred only from execution activity
+- ASRP or manifest fingerprints do not match their referenced records
+- Required gates or Evidence obligations disappear during manifest compilation
+
+## ASRP protocol conformance
+
+Protocol conformance supplements the Structure maturity score.
+
+When ASRP or execution-manifest artifacts are present, assess:
+
+| Check | Exact conformance |
+|-------|-------------------|
+| Schema | `ape-structure-record/v1` and `isee-execution-manifest/v1`; read-only validation succeeds when available |
+| Lifecycle | Applicable Structure is effective and not revoked, expired, or superseded |
+| Intent binding | Each applicable ADRP record is referenced by exact decision ID and fingerprint |
+| Topology | Actors, elements, ownership, responsibilities, dependencies, interfaces, and boundaries are explicit |
+| Execution contract | Entry point, dependency closure, and required blocking/advisory gates are compiled |
+| Evidence contract | Evidence requirements identify type, subject, accepted result, artifact roles, and criteria where applicable |
+| Artifact integrity | Referenced architecture, policy, IaC, workflow, or API artifacts remain under the declared root and match digests |
+| Manifest integrity | Manifest fingerprint is present or reproducible |
+
+Classify ASRP conformance as **Exact**, **Reference**, **Absent**, **Invalid**, or **Unknown**. Absence does not automatically make informal Structure weak.
 
 ### UNKNOWN
 When signals are ambiguous or external, attempt to follow external constraint references (compliance policies, org rulesets) using available tools. If unreachable, record as a finding — don't ask the user to go retrieve the content.
@@ -65,7 +93,7 @@ When signals are ambiguous or external, attempt to follow external constraint re
 |---------|-------------|-----------|
 | **Lightweight** | Startup, small team | Basic CI checks + linting sufficient. Informal constraints documented somewhere. Upstream connections optional. |
 | **Standard** | Established team | CI with quality gates, branch protection, tool scoping, security scanning, documented constraints. Some upstream structural inheritance expected (shared CI, org policies). |
-| **Regulated** | Compliance-heavy | Policy-as-code, mandatory approval gates, audit-grade security scanning, cost controls, compliance-linked constraints. Traceable connection to organizational/compliance constraints required. |
+| **Regulated** | Compliance-heavy | Policy-as-code, mandatory approval gates, authoritative ASRP or equivalent records, audit-grade security scanning, cost controls, and traceable organizational/compliance constraints. |
 
 ## When signals are weak — ask_user template
 

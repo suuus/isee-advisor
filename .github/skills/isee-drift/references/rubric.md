@@ -75,6 +75,14 @@ INSERT INTO todo_deps (todo_id, depends_on) VALUES
 - Were new upstream connections established?
 - Did any direct connections become indirect (or vice versa)?
 
+### Protocol conformance drift
+- Did an ADRP or ASRP record become effective, expire, get revoked, or become superseded?
+- Did any canonical fingerprint change without a corresponding version or supersession relationship?
+- Did Intent → Structure or Evidence → Intent/Structure bindings become exact, partial, mismatched, or disappear?
+- Did the compiled manifest change entry point, gates, Evidence requirements, or artifact digests?
+- Did required Evidence become satisfied, stale, revoked, or invalid?
+- Did the learning loop move from Open → Partial → Closed, or regress?
+
 ### Agent ISEE drift (if agents present in both assessments)
 - Did per-agent ISEE scores change?
 - Were new agents added or existing ones removed?

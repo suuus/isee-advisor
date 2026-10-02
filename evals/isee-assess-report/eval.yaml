@@ -24,6 +24,7 @@ graders:
         - "(?i)(🟢|🟡|🔴|strong|developing|weak)"
         - "(?i)recommendation"
         - "(?i)(summary|aggregate|overall)"
+        - "(?i)protocol conformance"
 
   - type: text
     name: cites_fixture
@@ -41,6 +42,7 @@ graders:
         - "(?i)structure"
         - "(?i)execution"
         - "(?i)evidence"
+        - "(?i)(adrp|asrp|aerp|execution manifest)"
 
   - type: text
     name: includes_recommendations

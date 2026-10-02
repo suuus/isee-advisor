@@ -13,6 +13,14 @@ When the assessment is complete, produce this structure:
 - **Indirect**: [compliance policy references, platform constraints — with citations]
 - **Structural inheritance**: [Does structure come from upstream? Centrally managed or local-only?]
 
+### Structure Protocol Conformance
+- **ASRP**: Exact / Reference / Absent / Invalid / Unknown
+- **Intent bindings**: [exact / references only / missing / mismatched]
+- **Topology and boundaries**: [actors, ownership, elements, interfaces, dependencies]
+- **Execution contract**: [entry point, gates, dependency closure]
+- **Evidence obligations**: [complete / partial / absent]
+- **Artifact and manifest integrity**: [verified / failed / unknown]
+
 ### Summary
 - Signals found: X present, Y absent, Z unknown
 - Confidence: [overall confidence level]

@@ -1,0 +1,74 @@
+{
+  "schema_version": "aerp-evidence-record/v1",
+  "evidence_id": "fc558a7d-d947-48e4-a428-726d832b41bb",
+  "evidence_type": "assessment",
+  "subject": {
+    "name": "security-gate",
+    "uri": null,
+    "digest": null
+  },
+  "claim": {
+    "statement": "The blocking production security gate passed",
+    "result": "passed",
+    "summary": "No unresolved blocking security findings remain.",
+    "criteria_refs": [
+      "SECURITY-GATE-01"
+    ]
+  },
+  "producer": {
+    "name": "security-analyzer",
+    "version": "1.0.0",
+    "identity": "github-actions:suuus/protocol-complete/security-gate",
+    "invocation_id": "run-isee-001"
+  },
+  "method": {
+    "name": "production-security-review",
+    "version": "1",
+    "parameters_digest": null
+  },
+  "timing": {
+    "observed_at": "2026-10-02T12:40:00Z",
+    "valid_from": null,
+    "valid_until": null
+  },
+  "environment": {
+    "name": "production",
+    "target": "production-deployment",
+    "correlation_ids": {}
+  },
+  "decision_bindings": [
+    {
+      "decision_id": "ADR-SECURITY-GATE",
+      "record_id": "849535a2-fb8d-4a59-a9ea-d01ff9b7b460",
+      "record_version": 1,
+      "record_fingerprint": "sha256:33a1f34800953029337e6f54aaa7263cd205088b7d96be223b81d7cdfe4a76fb"
+    }
+  ],
+  "structure_bindings": [
+    {
+      "structure_id": "STR-PRODUCTION-DEPLOYMENT",
+      "record_id": "5a55e292-2650-460d-901d-fc38af809e21",
+      "record_version": 1,
+      "record_fingerprint": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ],
+  "policy_refs": [],
+  "control_refs": [],
+  "artifacts": [
+    {
+      "name": "security-gate-report.json",
+      "path": "security-gate-report.json",
+      "media_type": "application/json",
+      "digest": "sha256:43ed724cbbf8033c54b1eea4f951fa5936f4bef0fc18aead3ce33677ca3fc1fe",
+      "role": "report"
+    }
+  ],
+  "relationships": {
+    "derived_from": [],
+    "supersedes": [],
+    "revokes": []
+  },
+  "integrity": {
+    "record_fingerprint": null
+  }
+}

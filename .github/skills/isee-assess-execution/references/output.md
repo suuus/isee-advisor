@@ -13,6 +13,14 @@ When the assessment is complete, produce this structure:
 - **Indirect**: [team/stakeholder references, external workflow tools — with citations]
 - **Work item traceability**: [Connected / Partial / None — can execution be traced to upstream work items?]
 
+### Execution Protocol Conformance
+- **Manifest consumption**: Exact / Reference / Absent / Invalid / Unknown
+- **Manifest fingerprint retained**: [yes / no / unknown]
+- **Intent and Structure bindings retained**: [exact / partial / mismatched / unknown]
+- **Entry point followed**: [yes / no / unknown]
+- **Required gates and approvals**: [enforced / partial / bypassed / unknown]
+- **Evidence handoff**: [AERP / durable equivalent / prose only / unknown]
+
 ### Summary
 - Signals found: X present, Y absent, Z unknown
 - Confidence: [overall confidence level]

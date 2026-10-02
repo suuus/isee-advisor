@@ -1,0 +1,29 @@
+id: protocol-mismatched-evidence
+name: Detect mismatched ASRP Evidence binding
+description: |
+  The AERP record has the right ADRP binding but a deliberately wrong ASRP
+  fingerprint. The saved evaluation reports the missing expected Structure
+  binding and a failed overall result.
+tags:
+  - protocol
+  - negative
+  - binding-mismatch
+inputs:
+  prompt: |
+    Assess the Evidence layer using the Regulated profile. Focus on protocol
+    conformance and explain why Evidence bound to the correct Intent but the
+    wrong Structure does not close the ISEE chain. Cite the saved evaluation.
+    Do not ask clarifying questions.
+  files:
+    - path: protocol-mismatched-evidence/README.md
+    - path: protocol-mismatched-evidence/CHANGELOG.md
+    - path: protocol-mismatched-evidence/.github/isee/execution-manifest.json
+    - path: protocol-mismatched-evidence/.github/isee/evaluation.json
+    - path: protocol-mismatched-evidence/evidence/security-gate.aerp.json
+expected:
+  output_contains:
+    - "Evidence Protocol Conformance"
+    - "missing_structure_bindings"
+    - "Invalid"
+  outcomes:
+    - type: task_completed

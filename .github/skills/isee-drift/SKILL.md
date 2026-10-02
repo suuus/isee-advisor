@@ -17,12 +17,13 @@ Compare the current repo state against `.github/isee-report.md` to surface what 
 
 1. Find `.github/isee-report.md`; if missing, use the `ask_user` template in [`references/rubric.md`](references/rubric.md).
 2. Insert drift todos into SQL — use INSERT template from the rubric.
-3. Re-scan all four layers (same signals as assess skills, lighter analysis).
+3. Re-scan all four layers (same signals as assess skills, lighter analysis), including ADRP/ASRP/AERP lifecycle and fingerprint changes.
 4. For each prior finding, determine status: ✅ Improved · ✅ Maintained · ⚠️ Regressed · 🆕 New · ➖ Removed · 🔄 Unchanged gap.
-5. Compare layer scores prior → current; see score change patterns in the rubric.
-6. Generate drift report per [`references/output.md`](references/output.md).
-7. Offer to save updated baseline via `ask_user` (save template in rubric); if yes, overwrite `isee-report.md`.
-8. `UPDATE todos SET status = 'done' WHERE id = 'drift-report';`
+5. Separately compare protocol conformance: new/missing records, supersession, changed fingerprints, binding mismatches, gate changes, unsatisfied Evidence, and loop closure.
+6. Compare layer scores prior → current; see score change patterns in the rubric.
+7. Generate drift report per [`references/output.md`](references/output.md).
+8. Offer to save updated baseline via `ask_user` (save template in rubric); if yes, overwrite `isee-report.md`.
+9. `UPDATE todos SET status = 'done' WHERE id = 'drift-report';`
 
 ## Examples
 

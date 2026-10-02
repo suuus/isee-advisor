@@ -1,0 +1,23 @@
+{
+  "manifest_fingerprint": "sha256:507c68c7330f2e683c1493c765c17f7d29b33ccc77d4b8cdfdfea7c876957559",
+  "missing_intent_bindings": [],
+  "missing_structure_bindings": [
+    {
+      "record_fingerprint": "sha256:a04a04655f79157e7f053c54b61e0fbd1032cd4e13608b9b684090661be45fdd",
+      "record_id": "5a55e292-2650-460d-901d-fc38af809e21",
+      "record_version": 1,
+      "structure_id": "STR-PRODUCTION-DEPLOYMENT"
+    }
+  ],
+  "requirements": [
+    {
+      "matching_evidence_ids": [
+        "fc558a7d-d947-48e4-a428-726d832b41bb"
+      ],
+      "requirement_id": "SECURITY-GATE-RESULT",
+      "satisfied": true
+    }
+  ],
+  "schema_version": "isee-evaluation/v1",
+  "valid": false
+}

@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.4.0] - 2026-10-02
+
+### Added
+- Separate protocol-conformance assessment for ADRP Intent, ASRP Structure, ISEE execution manifests, and AERP Evidence.
+- Exact-chain checks for lifecycle, fingerprints, bindings, manifest consumption, gates, Evidence requirements, artifact integrity, and loop closure.
+- Valid, mismatched-binding, and missing-Evidence protocol fixtures with Waza eval tasks.
+- Public-repository contribution, conduct, security, issue, and pull-request guidance.
+- General CI for manifest validation, agent/skill structure checks, and repository-wide Markdown linting.
+
+### Changed
+- Execution assessment now focuses on whether work follows approved entry points, manifests, gates, approvals, and Structure-defined responsibilities.
+- Reports keep framework maturity independent from optional protocol adoption.
+- Recommendations route context, Intent, Structure, Evidence, and integration gaps to Ape Context, ADRP, ASRP, AERP, or ISEE respectively.
+- Drift detection now identifies lifecycle changes, fingerprint changes, binding mismatches, gate changes, and stale or unsatisfied Evidence.
+
 ## [0.3.0] - 2026-05-28
 
 ### Added
@@ -46,6 +61,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 - Assessment report compiler.
 
 [0.3.0]: https://github.com/suuus/isee-advisor/compare/v0.2.1...v0.3.0
+[0.4.0]: https://github.com/suuus/isee-advisor/compare/v0.3.0...v0.4.0
 [0.2.1]: https://github.com/suuus/isee-advisor/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/suuus/isee-advisor/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/suuus/isee-advisor/releases/tag/v0.1.0

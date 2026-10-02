@@ -19,6 +19,7 @@ inputs:
     - Layer scores (🟢/🟡/🔴) with key finding per layer
     - Top 3 prioritized recommendations
     - Context chain summary (upstream/downstream/isolation risk)
+    - Protocol conformance table kept separate from framework maturity
     - Aggregate maturity score with rationale
 
     Do not re-assess the repository. Use only the findings provided in the JSON file.

@@ -1,0 +1,16 @@
+name: Governed production deployment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify preflight output
+        run: test -f .github/isee/execution-manifest.json
+      - name: Run blocking security gate
+        run: test -f evidence/security-gate.aerp.json
+      - name: Evaluate required Evidence
+        run: isee evaluate --manifest .github/isee/execution-manifest.json --evidence evidence/security-gate.aerp.json

@@ -4,10 +4,10 @@
 
 ```sql
 INSERT INTO todos (id, title, description, status) VALUES
-  ('assess-intent',    'Phase 1: Assess Intent layer',     'Scan for explicit intent statements, outcome definitions, decision criteria, intent levels, upstream context', 'pending'),
-  ('assess-structure', 'Phase 2: Assess Structure layer',  'Check for codified constraints, guardrails, tool scoping, trade-offs, upstream structural inheritance', 'pending'),
-  ('assess-execution', 'Phase 3: Assess Execution layer',  'Evaluate team topology signals, context distribution, coordination patterns, work item traceability', 'pending'),
-  ('assess-evidence',  'Phase 4: Assess Evidence layer',   'Check for feedback loops, monitoring, CI checks, reporting patterns, evidence upstream flow', 'pending'),
+  ('assess-intent',    'Phase 1: Assess Intent layer',     'Scan framework signals and ADRP lifecycle, authority, autonomy, Evidence expectations, and integrity', 'pending'),
+  ('assess-structure', 'Phase 2: Assess Structure layer',  'Check ownership, boundaries, guardrails, ASRP bindings, manifests, gates, and Evidence obligations', 'pending'),
+  ('assess-execution', 'Phase 3: Assess Execution layer',  'Evaluate manifest consumption, retained bindings, entry points, gates, approvals, and coordination', 'pending'),
+  ('assess-evidence',  'Phase 4: Assess Evidence layer',   'Check feedback loops, AERP bindings, claim matching, provenance, validity, and artifact integrity', 'pending'),
   ('assess-agents',    'Phase 5: Assess Agents (optional)','Evaluate agents and agentic systems through the ISEE lens — only if agent definitions detected', 'pending'),
   ('assess-report',    'Phase 6: Generate ISEE report',    'Compile findings into scored maturity report with intent levels, context chain, agent assessment, recommendations', 'pending');
 

@@ -1,0 +1,26 @@
+id: protocol-complete-structure
+name: Assess canonical ASRP Structure
+description: |
+  The fixture contains effective ASRP Structure exactly bound to ADRP Intent
+  and compiled into an execution manifest.
+tags:
+  - protocol
+  - asrp
+  - execution-manifest
+inputs:
+  prompt: |
+    Assess the Structure layer using the Standard profile. Inspect framework
+    signals plus ASRP and execution-manifest conformance: ownership, elements,
+    boundaries, Intent binding, entry point, gates, Evidence obligations, and
+    fingerprints. Do not ask clarifying questions.
+  files:
+    - path: protocol-complete/README.md
+    - path: protocol-complete/.github/workflows/production-deploy.yml
+    - path: protocol-complete/.github/structures/STR-PRODUCTION-DEPLOYMENT.v1.json
+    - path: protocol-complete/.github/isee/execution-manifest.json
+expected:
+  output_contains:
+    - "Structure Protocol Conformance"
+    - "STR-PRODUCTION-DEPLOYMENT"
+  outcomes:
+    - type: task_completed

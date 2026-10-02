@@ -25,6 +25,7 @@ graders:
         - "(?i)(ci|continuous integration|workflow)"
         - "(?i)(guardrail|gate|constraint)"
         - "(?i)recommendation"
+        - "(?i)structure protocol conformance"
 
   # Grounding: must mention a real file from the fixture
   - type: text

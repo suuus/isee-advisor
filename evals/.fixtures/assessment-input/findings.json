@@ -162,5 +162,18 @@
     "upstream": "copilot-instructions.md present with priorities",
     "downstream": "deploy.yml with smoke test → on-call notification",
     "isolation_risk": "Low"
+  },
+  "protocol_conformance": {
+    "adrp_records": "absent",
+    "asrp_records": "absent",
+    "intent_to_structure": "absent",
+    "execution_manifest": "missing",
+    "manifest_consumption": "absent",
+    "aerp_evidence": "absent",
+    "evidence_to_intent": "absent",
+    "evidence_to_structure": "absent",
+    "required_evidence": "unknown",
+    "isee_loop": "partial",
+    "summary": "No canonical profile artifacts are present. This does not reduce the framework maturity score because strong equivalent repository signals exist."
   }
 }

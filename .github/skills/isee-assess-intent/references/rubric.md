@@ -14,6 +14,8 @@ Read these files if they exist:
 6. `.github/isee/` or `docs/isee/` — dedicated ISEE documentation
 7. `.github/pull_request_template.md` — does it ask for intent/outcome?
 8. `.github/ISSUE_TEMPLATE/` — do they require outcome/goal statements?
+9. `.github/decisions/**/*.json`, `decisions/**/*.json`, `docs/decisions/**/*.json` — ADRP records
+10. `.github/isee/active-intent.json`, `.github/isee/context.md`, `.github/isee/preflight.json` — resolved Intent projection
 
 ## Intent signals
 
@@ -23,6 +25,8 @@ Read these files if they exist:
 - Decision criteria ("PRs must demonstrate user impact")
 - Values or principles that guide trade-offs
 - Agent-readable intent (clear enough for an AI to act on without guessing)
+- Valid ADRP records with `schema_version: ape-decision-record/v1`
+- Effective, ratified ADRP Intent with explicit authority, autonomy, lifecycle, and expected Evidence
 
 ### ABSENT
 - Project purpose described only in terms of what it IS, not what it ACHIEVES
@@ -33,6 +37,32 @@ Read these files if they exist:
 - Intent exists at only one level (e.g., product-only)
 - No traceable chain between intent levels
 - No upstream context connections — intent appears in isolation
+- ADRP records are draft, expired, revoked, unratified, or lack authority but are treated as active
+- Multiple active ADRP records conflict without an explicit resolution
+
+## ADRP protocol conformance
+
+Protocol conformance is an additional confidence dimension, not a prerequisite for strong Intent.
+
+When ADRP artifacts are present, assess:
+
+| Check | Exact conformance |
+|-------|-------------------|
+| Schema | `schema_version` is `ape-decision-record/v1`; `adrp validate` succeeds when available |
+| Lifecycle | Record is effective for the assessed time and not revoked, expired, or superseded |
+| Authority | Decision owner, deciders/approvers, and ratification are explicit |
+| Autonomy | `proceed`, `always_ask`, and `never` boundaries are usable by agents |
+| Evidence expectation | Implementation or Evidence references state what would prove the decision worked |
+| Integrity | Canonical fingerprint is present or reproducible |
+| Resolution | Scope resolution identifies the applicable record set without unresolved conflicts |
+
+Classify ADRP conformance as:
+
+- **Exact** — deterministic checks pass and the applicable record is authoritative.
+- **Reference** — ADRP-shaped or linked records exist, but exact validation, authority, or fingerprints are incomplete.
+- **Absent** — no ADRP artifacts. This is not automatically an Intent maturity gap.
+- **Invalid** — artifacts claim ADRP conformance but fail schema, lifecycle, conflict, or integrity checks.
+- **Unknown** — deterministic validation could not be performed.
 
 ## Intent levels
 
@@ -79,7 +109,7 @@ Do not ask the user to retrieve external content. Either the context flows into 
 |---------|-------------|-----------|
 | **Lightweight** | Startup, small team | Intent in README suffices. 2-3 explicit statements = strong. 2+ levels. Upstream optional. |
 | **Standard** | Established team | Dedicated docs or copilot-instructions section. 5+ explicit statements. 3+ levels. Some upstream connections. |
-| **Regulated** | Compliance-heavy | Approved strategy docs, ADRs, compliance-linked outcomes. 4+ levels with traceable chain. Upstream → organizational/compliance required. |
+| **Regulated** | Compliance-heavy | Approved strategy docs or authoritative ADRP records, compliance-linked outcomes. 4+ levels with traceable chain. Upstream → organizational/compliance required. |
 
 ## When signals are weak — ask_user template
 

@@ -1,0 +1,16 @@
+{
+  "manifest_fingerprint": "sha256:507c68c7330f2e683c1493c765c17f7d29b33ccc77d4b8cdfdfea7c876957559",
+  "missing_intent_bindings": [],
+  "missing_structure_bindings": [],
+  "requirements": [
+    {
+      "matching_evidence_ids": [
+        "fc558a7d-d947-48e4-a428-726d832b41bb"
+      ],
+      "requirement_id": "SECURITY-GATE-RESULT",
+      "satisfied": true
+    }
+  ],
+  "schema_version": "isee-evaluation/v1",
+  "valid": true
+}

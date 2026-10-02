@@ -1,0 +1,27 @@
+id: protocol-complete-execution
+name: Assess manifest-governed Execution
+description: |
+  The fixture retains the exact manifest, Intent, and Structure fingerprints
+  in execution metadata and records the required blocking gate.
+tags:
+  - protocol
+  - execution
+  - manifest
+inputs:
+  prompt: |
+    Assess the Execution layer using the Standard profile. Determine whether
+    execution consumed the selected manifest, retained exact bindings, used
+    the approved entry point, enforced gates and approval, and handed off
+    durable Evidence. Do not ask clarifying questions.
+  files:
+    - path: protocol-complete/README.md
+    - path: protocol-complete/.github/workflows/production-deploy.yml
+    - path: protocol-complete/.github/isee/execution-manifest.json
+    - path: protocol-complete/execution/run.json
+    - path: protocol-complete/evidence/security-gate.aerp.json
+expected:
+  output_contains:
+    - "Execution Protocol Conformance"
+    - "manifest"
+  outcomes:
+    - type: task_completed

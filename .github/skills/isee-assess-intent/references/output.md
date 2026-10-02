@@ -26,6 +26,13 @@ When the assessment is complete, produce this structure:
 - **Indirect**: [list with citations, or "None found"]
 - **Context isolation risk**: Low / Medium / High
 
+### Intent Protocol Conformance
+- **ADRP**: Exact / Reference / Absent / Invalid / Unknown
+- **Applicable records**: [decision IDs, versions, lifecycle states]
+- **Authority and ratification**: [summary]
+- **Autonomy boundaries**: [usable / partial / absent]
+- **Integrity**: [verified fingerprints / references only / failed / unknown]
+
 ### Summary
 - Signals found: X present, Y absent, Z unknown
 - Confidence: [overall level]

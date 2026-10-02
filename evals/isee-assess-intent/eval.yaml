@@ -27,6 +27,7 @@ graders:
         - "(?i)depth"
         - "(?i)coherence"
         - "(?i)(present|absent|unknown)"
+        - "(?i)intent protocol conformance"
 
   # Grounding: must cite README from the fixture
   - type: text
@@ -70,4 +71,3 @@ graders:
 
 tasks:
   - "tasks/*.yaml"
-

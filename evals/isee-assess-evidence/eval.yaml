@@ -24,6 +24,7 @@ graders:
         - "(?i)(feedback loop|signal|monitoring|observab)"
         - "(?i)(ci|continuous integration|pipeline)"
         - "(?i)recommendation"
+        - "(?i)evidence protocol conformance"
 
   - type: text
     name: cites_fixture
